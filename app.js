@@ -29,6 +29,8 @@ app.get('/', function (req, res) {
 });
 app.post('/login', async function (request, response) {
     try{
+        console.log(request);
+        console.log(request.body);
         const {Email,password} = request.body
         console.log({Email,password});
         console.log('before finding');
