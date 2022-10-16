@@ -18,10 +18,15 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
     console.log("Connection Successful!");
 })
+app.all('/', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    next()
+});
 app.get('/', function (req, res) {
  res.send(JSON.stringify({ Hello: "World"}));
 });
-app.post('/login',cors(corsOptions), async function (request, response) {
+app.post('/login', async function (request, response) {
     try{
         const {Email,password} = request.body
         console.log({Email,password});
