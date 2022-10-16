@@ -1,6 +1,6 @@
 var express = require("express");
 const cors = require('cors');
-// const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const signUpTemplate = require('./models/UserTemplate');
