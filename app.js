@@ -4,7 +4,7 @@ const cors = require('cors');
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const signUpTemplate = require('./models/UserTemplate');
-const bodyparser = require('body-parser')
+const bodyparser = require('body-parser');
 var port = process.env.PORT || 3000;
 var app = express();
 var whitelist = ['https://powerful-anchorage-21815.herokuapp.com'];
@@ -20,8 +20,8 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
     console.log("Connection Successful!");
 })
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
+app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({
   extended: true
 }));
 app.all('/', function(req, res, next) {
