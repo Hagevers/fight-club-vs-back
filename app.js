@@ -5,7 +5,13 @@ const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 var port = process.env.PORT || 3000;
 var app = express();
-app.use(cors());
+var whitelist = ['https://powerful-anchorage-21815.herokuapp.com'];
+var corsOptions = {
+    origin: function(origin, callback){
+    var originWhitelisted = whitelist.indexOf(origin) !== -1;
+    callback(null, originWhitelisted);
+    }
+};
 mongoose.connect("mongodb+srv://vercel-admin-user:A9b-hCcprdDBfGQ@cluster0.mqyicqe.mongodb.net/?retryWrites=true&w=majority");
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -15,7 +21,7 @@ db.once('open', function() {
 app.get('/', function (req, res) {
  res.send(JSON.stringify({ Hello: "World"}));
 });
-app.post('/login', async function (request, response) {
+app.post('/login',cors(corsOptions), async function (request, response) {
     try{
         const {Email,password} = request.body
         console.log({Email,password});
