@@ -49,9 +49,7 @@ app.post('/login', async function (request, response) {
         console.log('before finding');
         signUpTemplate.findOne({Email:Email}).then(async (user) => {
             if(!user){
-                console.log('found user');
-                console.log('username/password is not exist');
-                response.status(400).send({msg:"username/password is not exist"})
+                response.send({msg:"username/password is not exist"})
             }
             else{
                 const NickName = user.NickName;
@@ -67,8 +65,7 @@ app.post('/login', async function (request, response) {
                     response.status(200).json(user);
                 }
                 else{
-                    console.log('username/password is not exist');
-                    response.status(400).send({msg:"username/password is not exist"})
+                    response.send({msg:"username/password is not exist"})
                 }
             }
         })
