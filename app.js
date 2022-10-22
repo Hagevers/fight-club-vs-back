@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const signUpTemplate = require('./models/UserTemplate');
 const bodyparser = require('body-parser');
 var port = process.env.PORT || 3000;
+const resourcesTemple = require('../src/Backend/ResourcesModel');
 var app = express();
 var whitelist = ['https://powerful-anchorage-21815.herokuapp.com'];
 var corsOptions = {
@@ -75,6 +76,53 @@ app.post('/login', async function (request, response) {
     catch(e){
         console.error(e);
     }
+});
+app.post('/register', async function (request, response) {
+    const {NickName,Email,password} = request.body;
+    console.log({NickName,Email,password});
+    try{
+        console.log('before finding');
+        signUpTemplate.findOne({Email:Email}).then(async (user) => {
+            if ( user ) {
+                console.log('user exist');
+                response.status(400).send({msg:"User already exist!"})
+            }
+            else {
+                console.log('starts to create user');
+                const securePass = await bcrypt.hash(password, 10);
+                console.log('enc pass');
+                const newUser = new signUpTemplate({
+                    NickName: NickName,
+                    Email: Email,
+                    password: securePass,
+                });
+                const resources = new resourcesTemple({
+                    UserId: "",
+                    Gold: 750,
+                    Solfour: 750,
+                    Marble: 750,
+                    Food: 750
+                });
+                resources.UserId = newUser._id;
+                await resources.save();
+                newUser.save()
+                .then(data => {
+                    
+                    resources.save()
+                    response.status(200).send(data);
+                    console.log('saved');
+                })
+                .catch(error => {
+                    response.status(500).send(error);
+                    console.log('not saved');
+                })
+                console.log('finished user');
+            }
+        });
+    }catch{
+        console.log('was an error with creating user');
+    }
+    console.log('pass reg post');
 });
 app.listen(port, function () {
  console.log(`Example app listening on port !`);
