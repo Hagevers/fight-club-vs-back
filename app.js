@@ -121,6 +121,14 @@ app.post('/register', async function (request, response) {
     }
     console.log('pass reg post');
 });
+app.post('/resources', async function (request, response) {
+    const token = request.token;
+    const decode = JSON.parse(Buffer.from(token.split('.')[1], 'base64'));
+    resourcesTemple.find({UserId:decode.user_id})
+        .select('Food Marble Solfour Gold')
+        .then(data => response.status(200).send(data))
+        .catch(error => console.log(error));
+});
 app.listen(port, function () {
  console.log(`Example app listening on port !`);
 });
