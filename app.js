@@ -29,7 +29,7 @@ app.use(bodyparser.urlencoded({
 var corsOptions = {
     origin: ["https://fierce-caverns-88917.herokuapp.com","http://localhost:3000"],
     optionsSuccessStatus: 200 ,// For legacy browser support
-    credentials: true
+    withCredentials: true
 }
     
 app.use(cors(corsOptions));
