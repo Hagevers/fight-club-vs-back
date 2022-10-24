@@ -31,12 +31,12 @@ var corsOptions = {
 }
     
 app.use(cors(corsOptions));
-// app.use(function(req, res, next) {
-//     res.header("Access-Control-Allow-Origin", "https://fierce-caverns-88917.herokuapp.com");
-//     //res.header("Access-Control-Allow-Origin", "http://localhost:3000");  // update to match the domain you will make the request from
-//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//     next();
-//   });  
+app.use(function(req, res, next) {
+    // res.header("Access-Control-Allow-Origin", "https://fierce-caverns-88917.herokuapp.com");
+    res.header("Access-Control-Allow-Origin", "http://localhost:3000");  // update to match the domain you will make the request from
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });  
 app.get('/', function (req, res) {
  res.send(JSON.stringify({ Hello: "World"}));
 });
