@@ -124,7 +124,7 @@ app.post('/register', async function (request, response) {
     console.log('pass reg post');
 });
 app.get('/resources',auth, async function (request, response) {
-    const token = request.token;
+    const token = request.headers['token'];
     console.log(token);
     // const decode = JSON.parse(Buffer.from(token.split('.')[1], 'base64'));
     // resourcesTemple.find({UserId:decode.user_id})
