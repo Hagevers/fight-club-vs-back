@@ -8,7 +8,7 @@ const bodyparser = require('body-parser');
 var port = process.env.PORT || 3000;
 const resourcesTemple = require('./models/ResourcesModel');
 var app = express();
-var whitelist = ['https://powerful-anchorage-21815.herokuapp.com','https://localhost:3000'];
+var whitelist = ['https://powerful-anchorage-21815.herokuapp.com','http://localhost:3000'];
 var corsOptions = {
     origin: function(origin, callback){
     var originWhitelisted = whitelist.indexOf(origin) !== -1;
