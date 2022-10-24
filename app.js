@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const signUpTemplate = require('./models/UserTemplate');
 const bodyparser = require('body-parser');
 var port = process.env.PORT || 3000;
+const auth = require('./middlewares/auth');
 const resourcesTemple = require('./models/ResourcesModel');
 var app = express();
 var whitelist = ['https://powerful-anchorage-21815.herokuapp.com','http://localhost:3000'];
@@ -121,7 +122,7 @@ app.post('/register', async function (request, response) {
     }
     console.log('pass reg post');
 });
-app.get('/resources', async function (request, response) {
+app.get('/resources',auth, async function (request, response) {
     const token = request.token;
     console.log(token);
     // const decode = JSON.parse(Buffer.from(token.split('.')[1], 'base64'));
