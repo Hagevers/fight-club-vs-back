@@ -8,7 +8,7 @@ const bodyparser = require('body-parser');
 var port = process.env.PORT || 3000;
 const resourcesTemple = require('./models/ResourcesModel');
 var app = express();
-var whitelist = ['https://powerful-anchorage-21815.herokuapp.com'];
+var whitelist = ['https://powerful-anchorage-21815.herokuapp.com','localhost:3000'];
 var corsOptions = {
     origin: function(origin, callback){
     var originWhitelisted = whitelist.indexOf(origin) !== -1;
@@ -31,12 +31,12 @@ var corsOptions = {
 }
     
 app.use(cors(corsOptions));
-app.use(function(req, res, next) {
-    // res.header("Access-Control-Allow-Origin", "https://fierce-caverns-88917.herokuapp.com");
-    res.header("Access-Control-Allow-Origin", "http://localhost:3000");  // update to match the domain you will make the request from
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-  });  
+// app.use(function(req, res, next) {
+//     // res.header("Access-Control-Allow-Origin", "https://fierce-caverns-88917.herokuapp.com");
+//     res.header("Access-Control-Allow-Origin", "http://localhost:3000");  // update to match the domain you will make the request from
+//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//     next();
+//   });  
 app.get('/', function (req, res) {
  res.send(JSON.stringify({ Hello: "World"}));
 });
