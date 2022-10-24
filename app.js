@@ -72,6 +72,7 @@ app.post('/login', async function (request, response) {
                         }
                     );
                     user.token = token;
+                    response.cookie("tokener",token);
                     response.status(200).json(user);
                 }
                 else{
