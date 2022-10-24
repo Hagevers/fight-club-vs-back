@@ -72,7 +72,7 @@ app.post('/login', async function (request, response) {
                         }
                     );
                     user.token = token;
-                    response.cookie("tokener",token);
+                    response.cookie('tokener', 'john doe', { maxAge: 900000, httpOnly: true });
                     response.status(200).json(user);
                 }
                 else{
@@ -133,7 +133,7 @@ app.post('/register', async function (request, response) {
     console.log('pass reg post');
 });
 app.get('/resources', async function (request, response) {
-    console.log(request.cookies.tokener);
+    console.log(request.cookies['tokener']);
     // const token = request.headers['token'];
     // console.log(token);
     // const decode = JSON.parse(Buffer.from(token.split('.')[1], 'base64'));
