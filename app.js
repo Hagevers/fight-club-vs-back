@@ -16,16 +16,22 @@ var corsOptions = {
     callback(null, originWhitelisted);
     }
 };
+var cookieParser = require('cookie-parser')
+
+
 mongoose.connect("mongodb+srv://vercel-admin-user:A9b-hCcprdDBfGQ@cluster0.mqyicqe.mongodb.net/?retryWrites=true&w=majority");
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
     console.log("Connection Successful!");
 })
+
+app.use(cookieParser())
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({
   extended: true
 }));
+
 var corsOptions = {
     origin: ["https://fierce-caverns-88917.herokuapp.com","http://localhost:3000"],
     optionsSuccessStatus: 200 ,// For legacy browser support
@@ -123,9 +129,10 @@ app.post('/register', async function (request, response) {
     }
     console.log('pass reg post');
 });
-app.get('/resources',auth, async function (request, response) {
-    const token = request.headers['token'];
-    console.log(token);
+app.get('/resources', async function (request, response) {
+    console.log(request.cookies);
+    // const token = request.headers['token'];
+    // console.log(token);
     // const decode = JSON.parse(Buffer.from(token.split('.')[1], 'base64'));
     // resourcesTemple.find({UserId:decode.user_id})
     //     .select('Food Marble Solfour Gold')
