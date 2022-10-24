@@ -73,6 +73,7 @@ app.post('/login', async function (request, response) {
                     );
                     user.token = token;
                     response.cookie('tokener', 'john doe', { maxAge: 900000, httpOnly: true });
+                    response.send('somthing');
                     response.status(200).json(user);
                 }
                 else{
