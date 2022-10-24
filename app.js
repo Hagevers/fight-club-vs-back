@@ -131,6 +131,8 @@ app.post('/register', async function (request, response) {
 });
 app.get('/resources', async function (request, response) {
     console.log(request.cookies);
+    console.log(request.cookies.token);
+    console.log(request.signedCookies);
     // const token = request.headers['token'];
     // console.log(token);
     // const decode = JSON.parse(Buffer.from(token.split('.')[1], 'base64'));
