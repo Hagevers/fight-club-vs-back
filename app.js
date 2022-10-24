@@ -130,9 +130,7 @@ app.post('/register', async function (request, response) {
     console.log('pass reg post');
 });
 app.get('/resources', async function (request, response) {
-    console.log(request.cookies);
-    console.log(request.cookies.token);
-    console.log(request.signedCookies);
+    response.status(200).send({msg:"Amit"})
     // const token = request.headers['token'];
     // console.log(token);
     // const decode = JSON.parse(Buffer.from(token.split('.')[1], 'base64'));
