@@ -123,11 +123,12 @@ app.post('/register', async function (request, response) {
 });
 app.get('/resources', async function (request, response) {
     const token = request.token;
-    const decode = JSON.parse(Buffer.from(token.split('.')[1], 'base64'));
-    resourcesTemple.find({UserId:decode.user_id})
-        .select('Food Marble Solfour Gold')
-        .then(data => response.status(200).send(data))
-        .catch(error => console.log(error));
+    console.log(token);
+    // const decode = JSON.parse(Buffer.from(token.split('.')[1], 'base64'));
+    // resourcesTemple.find({UserId:decode.user_id})
+    //     .select('Food Marble Solfour Gold')
+    //     .then(data => response.status(200).send(data))
+    //     .catch(error => console.log(error));
 });
 app.listen(port, function () {
  console.log(`Example app listening on port !`);
