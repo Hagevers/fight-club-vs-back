@@ -8,7 +8,7 @@ const bodyparser = require('body-parser');
 var port = process.env.PORT || 3000;
 const auth = require('./middlewares/auth');
 const resourcesTemple = require('./models/ResourcesModel');
-var cookieParser = require('cookie-parser');
+const cookieParser = require('cookie-parser');
 var app = express();
 var whitelist = ['https://powerful-anchorage-21815.herokuapp.com','http://localhost:3000'];
 var corsOptions = {
@@ -53,7 +53,7 @@ app.get('/', function (req, res) {
 });
 app.get('/getCookie', async function (request, response) {
     try{
-        var cook = request.cookies['tokener']
+        var cook = request.cookies
         if (cook){
             response.send(`Already has cookie ${cook}`);
         }else{
