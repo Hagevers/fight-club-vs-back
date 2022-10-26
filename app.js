@@ -74,7 +74,7 @@ app.post('/login', async function (request, response) {
         console.log('before finding');
         signUpTemplate.findOne({Email:Email}).then(async (user) => {
             if(!user){
-                response.send({msg:"username/password is not exist"})
+                return response.status(403).send({msg:"username/password is not exist"})
             }
             else{
                 const NickName = user.NickName;
@@ -87,12 +87,11 @@ app.post('/login', async function (request, response) {
                         }
                     );
                     user.token = token;
-                    response.cookie('tokener', 'john doe', { maxAge: 900000, httpOnly: true });
-                    //response.send('somthing');
-                    response.status(200).json(user);
+                    response.cookie('token', token, { maxAge: 900000, httpOnly: true });
+                    return response.redirect('/');
                 }
                 else{
-                    response.send({msg:"username/password is not exist"})
+                    return response.status(403).send({msg:"username/password is not exist"})
                 }
             }
         })
