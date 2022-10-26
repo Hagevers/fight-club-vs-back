@@ -1,4 +1,5 @@
 var express = require("express");
+var app = express();
 const cors = require('cors');
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken');
@@ -9,7 +10,6 @@ var port = process.env.PORT || 3000;
 const auth = require('./middlewares/auth');
 const resourcesTemple = require('./models/ResourcesModel');
 const cookieParser = require('cookie-parser');
-var app = express();
 var whitelist = ['https://powerful-anchorage-21815.herokuapp.com','http://localhost:3000'];
 var corsOptions = {
     origin: function(origin, callback){
@@ -56,8 +56,9 @@ app.get('/getCookie', async function (request, response) {
         var cook = request.cookies
         if (cook){
             response.send(`Already has cookie ${cook}`);
+            console.log(request.cookies);
         }else{
-        response.cookie('tokener', 'john doe', { maxAge: 900000, httpOnly: true }).send("Cookie sent");
+        response.cookie('tokener', 'john doe').send("Cookie sent");
         }
     }
     catch(e){
