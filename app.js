@@ -53,7 +53,12 @@ app.get('/', function (req, res) {
 });
 app.get('/getCookie', async function (request, response) {
     try{
+        var cook = request.cookies['tokener']
+        if (cook){
+            response.send(`Already has cookie ${cook}`);
+        }else{
         response.cookie('tokener', 'john doe', { maxAge: 900000, httpOnly: true }).send("Cookie sent");
+        }
     }
     catch(e){
         response.send('unable to send cookie');
