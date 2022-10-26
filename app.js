@@ -8,6 +8,7 @@ const bodyparser = require('body-parser');
 var port = process.env.PORT || 3000;
 const auth = require('./middlewares/auth');
 const resourcesTemple = require('./models/ResourcesModel');
+var cookieParser = require('cookie-parser');
 var app = express();
 var whitelist = ['https://powerful-anchorage-21815.herokuapp.com','http://localhost:3000'];
 var corsOptions = {
@@ -16,7 +17,7 @@ var corsOptions = {
     callback(null, originWhitelisted);
     }
 };
-var cookieParser = require('cookie-parser')
+
 
 
 mongoose.connect("mongodb+srv://vercel-admin-user:A9b-hCcprdDBfGQ@cluster0.mqyicqe.mongodb.net/?retryWrites=true&w=majority");
@@ -50,6 +51,14 @@ app.use(function(req, res, next) {
 app.get('/', function (req, res) {
  res.send(JSON.stringify({ Hello: "World"}));
 });
+app.get('/getCookie', async function (request, response) {
+    try{
+        response.cookie('tokener', 'john doe', { maxAge: 900000, httpOnly: true }).send("Cookie sent");
+    }
+    catch(e){
+        response.send('unable to send cookie');
+    }
+});
 app.post('/login', async function (request, response) {
     try{
         console.log(request);
@@ -73,7 +82,7 @@ app.post('/login', async function (request, response) {
                     );
                     user.token = token;
                     response.cookie('tokener', 'john doe', { maxAge: 900000, httpOnly: true });
-                    response.send('somthing');
+                    //response.send('somthing');
                     response.status(200).json(user);
                 }
                 else{
