@@ -54,6 +54,7 @@ app.get('/', function (req, res) {
 app.get('/getCookie', async function (request, response) {
     var cook = request.cookies
     if (cook){
+        console.log(cook);
         return response.status(200).send(cook);
     }
 });
