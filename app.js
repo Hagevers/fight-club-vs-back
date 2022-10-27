@@ -52,14 +52,9 @@ app.get('/', function (req, res) {
  res.send(JSON.stringify({ Hello: "World"}));
 });
 app.get('/getCookie', async function (request, response) {
-    try{
-        var cook = request.cookies
-        if (cook){
-            return response.send(`Already has cookie ${cook}`);
-        }
-    }
-    catch(e){
-        response.send('unable to send cookie');
+    var cook = request.cookies
+    if (cook){
+        return response.send(`Already has cookie ${cook}`);
     }
 });
 app.post('/login', async function (request, response) {
