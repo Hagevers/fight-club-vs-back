@@ -25,15 +25,18 @@ app.use(bodyparser.urlencoded({
   extended: true
 }));
 
-app.use(function(req, res, next) {
-    // res.header("Access-Control-Allow-Origin", "https://fierce-caverns-88917.herokuapp.com");
-    res.header("Access-Control-Allow-Origin", "http://localhost:3000");  // update to match the domain you will make the request from
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS');
-    res.header("Access-Control-Allow-Credentials", true);
+app.use(cors())
+app.options('*', cors())
 
-    next();
-  });  
+// app.use(function(req, res, next) {
+//     // res.header("Access-Control-Allow-Origin", "https://fierce-caverns-88917.herokuapp.com");
+//     res.header("Access-Control-Allow-Origin", "http://localhost:3000");  // update to match the domain you will make the request from
+//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS');
+//     res.header("Access-Control-Allow-Credentials", true);
+
+//     next();
+//   });  
 app.get('/', function (request, response) {
 });
 app.get('/getCookie', auth, function (request, response) {
