@@ -58,6 +58,7 @@ app.post('/login', async function (request, response) {
                         }
                     );
                     user.token = token;
+                    console.log(token);
                     return response.status(200).send(token)
                 }
                 else{
