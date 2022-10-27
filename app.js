@@ -28,15 +28,6 @@ app.use(bodyparser.urlencoded({
 app.use(cors())
 app.options('*', cors())
 
-// app.use(function(req, res, next) {
-//     // res.header("Access-Control-Allow-Origin", "https://fierce-caverns-88917.herokuapp.com");
-//     res.header("Access-Control-Allow-Origin", "http://localhost:3000");  // update to match the domain you will make the request from
-//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS');
-//     res.header("Access-Control-Allow-Credentials", true);
-
-//     next();
-//   });  
 app.get('/', function (request, response) {
 });
 app.get('/getCookie', auth, function (request, response) {
@@ -122,16 +113,15 @@ app.post('/register', async function (request, response) {
     }
     console.log('pass reg post');
 });
-app.get('/resources', async function (request, response) {
-    console.log(request.cookies['tokener']);
-    // const token = request.headers['token'];
-    // console.log(token);
-    // const decode = JSON.parse(Buffer.from(token.split('.')[1], 'base64'));
-    // resourcesTemple.find({UserId:decode.user_id})
-    //     .select('Food Marble Solfour Gold')
-    //     .then(data => response.status(200).send(data))
-    //     .catch(error => console.log(error));
+app.get('/getResources', auth, async function (request, response) {
+    const token = request.token;
+    const decode = JSON.parse(Buffer.from(token.split('.')[1], 'base64'));
+    resourcesTemple.find({UserId:decode.user_id})
+        .select('Food Marble Solfour Gold')
+        .then(data => response.status(200).send(data))
+        .catch(error => console.log(error));
 });
+
 app.listen(port, function () {
  console.log(`Example app listening on port !`);
 });
