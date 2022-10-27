@@ -48,6 +48,8 @@ app.use(function(req, res, next) {
 
     next();
   });  
+app.get('/', function (request, response) {
+});
 app.get('/getCookie', async function (request, response) {
     const {token} = request.cookies
     if (token){
