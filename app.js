@@ -42,8 +42,9 @@ app.use(bodyparser.urlencoded({
 app.use(cors(corsOptions));
 app.use(function(req, res, next) {
     // res.header("Access-Control-Allow-Origin", "https://fierce-caverns-88917.herokuapp.com");
-    res.header("Access-Control-Allow-Origin", "http://localhost:3000");  // update to match the domain you will make the request from
+    // res.header("Access-Control-Allow-Origin", "http://localhost:3000");  // update to match the domain you will make the request from
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Credentials", true);
 
     next();
@@ -80,7 +81,7 @@ app.post('/login', async function (request, response) {
                     );
                     user.token = token;
                     response.cookie('token', token, { maxAge: 900000, httpOnly: true });
-                    return response.redirect('/');
+                    return response.redirect('/dashboard');
                 }
                 else{
                     return response.status(403).send({msg:"username/password is not exist"})
