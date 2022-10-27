@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 
 const verifyJwt = (req,res,next) => {
     console.log('entered middle');
-    const header = req.headers['Authorization'];
+    const header = req.headers.Authorization;
     const token = header && header.split(' ')[1];
     console.log(header);
     console.log(token);
