@@ -55,7 +55,7 @@ app.get('/', function (req, res) {
 app.get('/getCookie', async function (request, response) {
     var cook = request.cookies
     if (cook){
-        return response.send(`Already has cookie ${cook}`);
+        return response.status(200).send(cook);
     }
 });
 app.post('/login', async function (request, response) {
