@@ -7,7 +7,6 @@ const verifyJwt = (req,res,next) => {
     if (!token) return res.status(401).send({msg: "Login first please!"})
     jwt.verify(token, process.env.TOKEN_KEY, (err, user) => {
       if(err){ 
-        res.redirect('https://fierce-caverns-88917.herokuapp.com/login');
         return res.status(403).send({msg:"Not authoraized"})
     }
       req.token = token;
