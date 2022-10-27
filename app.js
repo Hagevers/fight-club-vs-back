@@ -44,13 +44,10 @@ app.use(function(req, res, next) {
     // res.header("Access-Control-Allow-Origin", "https://fierce-caverns-88917.herokuapp.com");
     res.header("Access-Control-Allow-Origin", "http://localhost:3000");  // update to match the domain you will make the request from
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    res.header("Access-Control-Allow-Credentials", "true");
+    res.header("Access-Control-Allow-Credentials", true);
 
     next();
   });  
-app.get('/', function (req, res) {
- res.send(JSON.stringify({ Hello: "World"}));
-});
 app.get('/getCookie', async function (request, response) {
     const {token} = request.cookies
     if (token){
@@ -60,8 +57,6 @@ app.get('/getCookie', async function (request, response) {
 });
 app.post('/login', async function (request, response) {
     try{
-        console.log(request);
-        console.log(request.body);
         const {Email,password} = request.body
         console.log({Email,password});
         console.log('before finding');
