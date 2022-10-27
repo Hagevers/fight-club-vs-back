@@ -52,10 +52,10 @@ app.get('/', function (req, res) {
  res.send(JSON.stringify({ Hello: "World"}));
 });
 app.get('/getCookie', async function (request, response) {
-    var cook = request.cookies
-    if (cook){
-        console.log(cook);
-        return response.status(200).send(cook);
+    const {token} = request.cookies
+    if (token){
+        console.log(token);
+        return response.status(200).send(token);
     }
 });
 app.post('/login', async function (request, response) {
