@@ -35,12 +35,8 @@ app.use(function(req, res, next) {
   });  
 app.get('/', function (request, response) {
 });
-app.get('/getCookie', async function (request, response) {
-    const {token} = request.cookies
-    if (token){
-        console.log(token);
-        return response.status(200).send(token);
-    }
+app.get('/getCookie', auth, function (request, response) {
+    console.log('All good!');
 });
 app.post('/login', async function (request, response) {
     try{
@@ -62,8 +58,7 @@ app.post('/login', async function (request, response) {
                         }
                     );
                     user.token = token;
-                    response.cookie('token', token, { maxAge: 900000, httpOnly: true });
-                    return response.status(200).send(request.cookies.token)
+                    return response.status(200).send(token)
                 }
                 else{
                     return response.status(403).send({msg:"username/password is not exist"})
