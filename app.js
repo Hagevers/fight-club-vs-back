@@ -55,10 +55,7 @@ app.get('/getCookie', async function (request, response) {
     try{
         var cook = request.cookies
         if (cook){
-            response.send(`Already has cookie ${cook}`);
-            console.log(request.cookies);
-        }else{
-        response.cookie('tokener', 'john doe').send("Cookie sent");
+            return response.send(`Already has cookie ${cook}`);
         }
     }
     catch(e){
