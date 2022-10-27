@@ -10,14 +10,6 @@ var port = process.env.PORT || 3000;
 const auth = require('./middlewares/auth');
 const resourcesTemple = require('./models/ResourcesModel');
 const cookieParser = require('cookie-parser');
-var whitelist = ['https://powerful-anchorage-21815.herokuapp.com','http://localhost:3000'];
-var corsOptions = {
-    origin: function(origin, callback){
-    var originWhitelisted = whitelist.indexOf(origin) !== -1;
-    callback(null, originWhitelisted);
-    }
-};
-
 
 
 mongoose.connect("mongodb+srv://vercel-admin-user:A9b-hCcprdDBfGQ@cluster0.mqyicqe.mongodb.net/?retryWrites=true&w=majority");
@@ -33,13 +25,6 @@ app.use(bodyparser.urlencoded({
   extended: true
 }));
 
-// var corsOptions = {
-//     origin: ["https://fierce-caverns-88917.herokuapp.com","http://localhost:3000"],
-//     optionsSuccessStatus: 200 ,// For legacy browser support
-//     withCredentials: true
-// }
-    
-app.use(cors(corsOptions));
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "https://fierce-caverns-88917.herokuapp.com");
     // res.header("Access-Control-Allow-Origin", "http://localhost:3000");  // update to match the domain you will make the request from
