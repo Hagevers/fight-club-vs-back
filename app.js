@@ -116,6 +116,8 @@ app.post('/register', async function (request, response) {
 app.get('/getResources', auth, async function (request, response) {
     const first = request.token;
     const token = first.split(' ')[1];
+    console.log(first);
+    console.log(token);
     const decode = JSON.parse(Buffer.from(token.split('.')[1], 'base64'));
     resourcesTemple.find({UserId:decode.user_id})
         .select('Food Marble Solfour Gold')
