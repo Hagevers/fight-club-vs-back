@@ -76,7 +76,7 @@ app.post('/login', async function (request, response) {
                     );
                     user.token = token;
                     response.cookie('token', token, { maxAge: 900000, httpOnly: true });
-                    return response.redirect('http://localhost:3000');
+                    return response.redirect('/');
                 }
                 else{
                     return response.status(403).send({msg:"username/password is not exist"})
