@@ -9,6 +9,7 @@ const bodyparser = require('body-parser');
 var port = process.env.PORT || 3000;
 const auth = require('./middlewares/auth');
 const resourcesTemple = require('./models/ResourcesModel');
+const workersTemplate = require('./models/WorkersModel');
 const cookieParser = require('cookie-parser');
 
 
@@ -92,8 +93,18 @@ app.post('/register', async function (request, response) {
                     Marble: 750,
                     Food: 750
                 });
+                const workers = new workersTemplate({
+                    UserId: "",
+                    Workers: 20,
+                    Mine: 5,
+                    Farm: 5,
+                    Quary: 5,
+                    Mountains: 5
+                });
+                workers.UserId = newUser._id;
                 resources.UserId = newUser._id;
                 await resources.save();
+                await workers.save();
                 newUser.save()
                 .then(data => {
                     
