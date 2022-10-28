@@ -2,6 +2,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const WorkersModel = new Schema({
+    UserId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },
     ResourcesId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Resources',

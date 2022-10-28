@@ -94,6 +94,7 @@ app.post('/register', async function (request, response) {
                     Food: 750
                 });
                 const workers = new workersTemplate({
+                    UserId: "",
                     ResourcesId: "",
                     Workers: 20,
                     Mine: 5,
@@ -103,6 +104,7 @@ app.post('/register', async function (request, response) {
                 });
                 resources.UserId = newUser._id;
                 workers.ResourcesId = resources._id;
+                workers.UserId = newUser._id;
                 await resources.save();
                 await workers.save();
                 newUser.save()
@@ -127,9 +129,14 @@ app.post('/register', async function (request, response) {
 app.get('/getResources', auth, async function (request, response) {
     const token = request.token;
     const decode = JSON.parse(Buffer.from(token.split('.')[1], 'base64'));
-    resourcesTemple.find({UserId:decode.user_id})
-        .select('Food Marble Solfour Gold')
-        .populate('UserId', 'Workers')
+    // resourcesTemple.find({UserId:decode.user_id})
+    //     .select('Farm Mine Quary Mountains')
+    //     .populate('ResourcesId', 'Workers')
+    //     .then(data => response.status(200).send(data))
+    //     .catch(error => console.log(error));
+    workersTemplate.find({UserId:decode.user_id})
+        .select('Farm Mine Quary Mountains')
+        .populate('ResourcesId', 'Food Gold Marble Solfour')
         .then(data => response.status(200).send(data))
         .catch(error => console.log(error));
 });
