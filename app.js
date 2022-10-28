@@ -129,6 +129,7 @@ app.get('/getResources', auth, async function (request, response) {
     const decode = JSON.parse(Buffer.from(token.split('.')[1], 'base64'));
     resourcesTemple.find({UserId:decode.user_id})
         .select('Food Marble Solfour Gold')
+        .populate('UserId', 'Workers')
         .then(data => response.status(200).send(data))
         .catch(error => console.log(error));
 });
