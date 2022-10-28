@@ -135,7 +135,7 @@ app.get('/getResources', auth, async function (request, response) {
     //     .then(data => response.status(200).send(data))
     //     .catch(error => console.log(error));
     workersTemplate.find({UserId:decode.user_id})
-        .select('Farm Mine Quary Mountains')
+        .select('Farm Mine Quary Mountains Workers')
         .populate('ResourcesId', 'Food Gold Marble Solfour')
         .then(data => response.status(200).send(data))
         .catch(error => console.log(error));
