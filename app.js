@@ -94,15 +94,15 @@ app.post('/register', async function (request, response) {
                     Food: 750
                 });
                 const workers = new workersTemplate({
-                    UserId: "",
+                    ResourcesId: "",
                     Workers: 20,
                     Mine: 5,
                     Farm: 5,
                     Quary: 5,
                     Mountains: 5
                 });
-                workers.UserId = newUser._id;
                 resources.UserId = newUser._id;
+                workers.ResourcesId = resources._id;
                 await resources.save();
                 await workers.save();
                 newUser.save()

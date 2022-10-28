@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const WorkersModel = new Schema({
-    UserId: {
+    ResourcesId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'Resources',
         required: true
     },
     Workers: {
