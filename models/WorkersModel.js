@@ -40,7 +40,7 @@ const WorkersModel = new Schema({
         type: Number,
         required: true
     },
-    Qyary_Efficiency: {
+    Quary_Efficiency: {
         type: Number,
         required: true
     },
