@@ -7,6 +7,10 @@ const ResourcesTemple = new Schema({
         ref: 'User',
         required: true
     },
+    Available_Workers:{
+        type: Number,
+        required: true
+    },
     Gold: {
         type: String,
         required: true
