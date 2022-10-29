@@ -101,7 +101,11 @@ app.post('/register', async function (request, response) {
                     Mine: 5,
                     Farm: 5,
                     Quary: 5,
-                    Mountains: 5
+                    Mountains: 5,
+                    Mine_Efficiency: 1,
+                    Farm_Efficiency: 1,
+                    Quary_Efficiency: 1,
+                    Mountains_Efficiency: 1
                 });
                 resources.UserId = newUser._id;
                 workers.ResourcesId = resources._id;
