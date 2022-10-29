@@ -31,6 +31,22 @@ const WorkersModel = new Schema({
     Mountains: {
         type: Number,
         required: true
+    },
+    Mine_Efficiency:{
+        type: Number,
+        required: true
+    },
+    Farm_Efficiency: {
+        type: Number,
+        required: true
+    },
+    Qyary_Efficiency: {
+        type: Number,
+        required: true
+    },
+    Mountains_Efficiency: {
+        type: Number,
+        required: true
     }
 }, {versionKey: false});
 const Workers = mongoose.model('Workers', WorkersModel);
