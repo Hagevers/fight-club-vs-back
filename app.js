@@ -140,7 +140,7 @@ app.get('/getResources', auth, async function (request, response) {
     const decode = JSON.parse(Buffer.from(token.split('.')[1], 'base64'));
     workersTemplate.find({UserId:decode.user_id})
         // .select('Farm Mine Quary Mountains Workers')
-        .populate('ResourcesId', 'Food Gold Marble Solfour Available_Workers Vault_Gold Vault_Solfour Vault_Marble Vault_Food')
+        .populate('ResourcesId')
         .then(data => response.status(200).send(data))
         .catch(error => console.log(error));
 });
