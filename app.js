@@ -92,7 +92,11 @@ app.post('/register', async function (request, response) {
                     Gold: 750,
                     Solfour: 750,
                     Marble: 750,
-                    Food: 750
+                    Food: 750,
+                    Vault_Gold: 0,
+                    Vault_Solfour: 0,
+                    Vault_Marble: 0,
+                    Vault_Food: 0
                 });
                 const workers = new workersTemplate({
                     UserId: "",

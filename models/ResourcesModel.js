@@ -12,19 +12,35 @@ const ResourcesTemple = new Schema({
         required: true
     },
     Gold: {
-        type: String,
+        type: Number,
         required: true
     },
     Solfour: {
-        type: String,
+        type: Number,
         required: true
     },
     Marble: {
-        type: String,
+        type: Number,
         required: true
     },
     Food: {
-        type: String,
+        type: Number,
+        required: true
+    },
+    Vault_Gold: {
+        type: Number,
+        required: true
+    },
+    Vault_Solfour: {
+        type: Number,
+        required: true
+    },
+    Vault_Marble: {
+        type: Number,
+        required: true
+    },
+    Vault_Food: {
+        type: Number,
         required: true
     }
 }, {versionKey: false});
