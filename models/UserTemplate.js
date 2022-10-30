@@ -84,7 +84,7 @@ const signUpTemplate = new Schema({
             default: 5,
         },
         Efficiency: {
-            Gold: {
+            Mine: {
                 type: Number,
                 default: 1
             },
