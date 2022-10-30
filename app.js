@@ -139,7 +139,7 @@ app.get('/getResources', auth, async function (request, response) {
     const token = request.token;
     const decode = JSON.parse(Buffer.from(token.split('.')[1], 'base64'));
     signUpTemplate.find({_id:decode.user_id})
-        .select('Resources Workers')
+        .select('Resources Workers Power')
         .then(data => response.status(200).send(data))
         .catch(error => console.log(error));
 });

@@ -26,6 +26,9 @@ const signUpTemplate = new Schema({
         type: String,
         default: ''
     },
+    avatar: {
+        type: Buffer
+    },
     Resources: {
         Gold: {
             type: Number,
@@ -61,6 +64,27 @@ const signUpTemplate = new Schema({
                 default: 0
             }
         }
+    },
+    Power: {
+        Soldiers: {
+            Ammount: {
+                type: Number,
+                default: 20
+            },
+            Available: {
+                type: Number,
+                default: 0
+            },
+            Level: {
+                type: Number,
+                default: 1
+            }
+        },
+        Items: [
+            {item: {
+                type: String
+            }}
+        ]
     },
     Workers: {
         Available: {
