@@ -70,31 +70,33 @@ const signUpTemplate = new Schema({
         Mine: {
             type: Number,
             default: 5,
-            efficiency: {
-                type: Number,
-                default: 1
-            }
         },
         Quary: {
             type: Number,
             default: 5,
-            efficiency: {
-                type: Number,
-                default: 1
-            }
         },
         Farm: {
             type: Number,
             default: 5,
-            efficiency: {
-                type: Number,
-                default: 1
-            }
         },
         Mountains: {
             type: Number,
             default: 5,
-            efficiency: {
+        },
+        Efficiency: {
+            Gold: {
+                type: Number,
+                default: 1
+            },
+            Quary: {
+                type: Number,
+                default: 1
+            },
+            Mountains: {
+                type: Number,
+                default: 1
+            },
+            Farm: {
                 type: Number,
                 default: 1
             }
