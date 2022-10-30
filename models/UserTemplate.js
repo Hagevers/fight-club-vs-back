@@ -25,6 +25,80 @@ const signUpTemplate = new Schema({
     token: {
         type: String,
         default: ''
+    },
+    Resources: {
+        Gold: {
+            type: Number,
+            default: 750
+        },
+        Marble: {
+            type: Number,
+            default: 750
+        },
+        Solfour: {
+            type: Number,
+            default: 750,
+        },
+        Food: {
+            type: Number,
+            default: 750
+        },
+        Vault: {
+            Gold: {
+                type: Number,
+                default: 0
+            },
+            Marble: {
+                type: Number,
+                default: 0
+            },
+            Solfour: {
+                type: Number,
+                default: 0
+            },
+            Vault: {
+                type: Number,
+                default: 0
+            }
+        }
+    },
+    Workers: {
+        Available: {
+            type: Number,
+            default: 20
+        },
+        Mine: {
+            type: Number,
+            default: 5,
+            efficiency: {
+                type: Number,
+                default: 1
+            }
+        },
+        Quary: {
+            type: Number,
+            default: 5,
+            efficiency: {
+                type: Number,
+                default: 1
+            }
+        },
+        Farm: {
+            type: Number,
+            default: 5,
+            efficiency: {
+                type: Number,
+                default: 1
+            }
+        },
+        Mountains: {
+            type: Number,
+            default: 5,
+            efficiency: {
+                type: Number,
+                default: 1
+            }
+        }
     }
 }, {versionKey: false});
 const User = mongoose.model('User', signUpTemplate);
