@@ -5,8 +5,7 @@ const verifyJwt = (req,res,next) => {
     const header = req.header('Authorization');
     const token = header && header.split(' ')[1];
     if (!token){ 
-        console.log(req);
-        return res.render('/Amit', {title: "Login first please!"})
+        return res.redirect("http://localhost:3000/login");
     }
     jwt.verify(token, process.env.TOKEN_KEY, (err, user) => {
     if(err){ 
