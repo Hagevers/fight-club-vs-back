@@ -4,7 +4,10 @@ const verifyJwt = (req,res,next) => {
     console.log('entered middle');
     const header = req.header('Authorization');
     const token = header && header.split(' ')[1];
-    if (!token) return res.status(401).send({msg: "Login first please!"})
+    if (!token){ 
+        window.location.href = '/' 
+        return res.status(401).send({msg: "Login first please!"})
+    }
     jwt.verify(token, process.env.TOKEN_KEY, (err, user) => {
       if(err){ 
         window.location.href = '/'
