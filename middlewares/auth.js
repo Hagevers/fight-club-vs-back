@@ -5,14 +5,14 @@ const verifyJwt = (req,res,next) => {
     const header = req.header('Authorization');
     const token = header && header.split(' ')[1];
     if (!token){ 
-        return res.redirect("http://localhost:3000/login");
+        return res.status(401).send({msg:"Please login first"})
     }
     jwt.verify(token, process.env.TOKEN_KEY, (err, user) => {
-    if(err){ 
-        return res.status(403).send({msg:"Not authoraized"})
-    }
-      req.token = token;
-      next();
+        if(err){ 
+            return res.status(403).send({msg:"Not authoraized"})
+        }
+        req.token = token;
+        next();
     });
 }
 
