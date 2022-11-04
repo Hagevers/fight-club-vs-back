@@ -148,7 +148,7 @@ app.get('/getResources', auth, async function (request, response) {
 const updateRes = schedule.scheduleJob('*/1 * * * *', function(){
   signUpTemplate.updateMany({},
     { $inc: 
-        {'Resources.Gold': "$Workers.Efficiency.Mine"}
+        {"Resources.Gold": '$Workers.Efficiency.Mine'}
         // , 'Resources.Marble': "$Workers.Efficiency.Quary",'Resources.Food': "$Workers.Efficiency.Farm",'Resources.Solfour': "$Workers.Efficiency.Mountains"}
     }, function(err, response){
         if(err) console.log(err);
