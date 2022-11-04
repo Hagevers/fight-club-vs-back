@@ -145,15 +145,15 @@ app.get('/getResources', auth, async function (request, response) {
         .catch(error => console.log(error));
 });
 
-const updateRes = schedule.scheduleJob('*/1 * * * *', function(){
-  signUpTemplate.updateMany({},
-    { $inc: 
-        {'Resources.Gold': "Workers.Efficiency.Gold", 'Resources.Marble': "Workers.Efficiency.Marble",'Resources.Food': "Workers.Efficiency.Food",'Resources.Solfour': "Workers.Efficiency.Solfour"}
-    }, function(err, response){
-        if(err) console.log(err);
-        else console.log(response);
-    });
-});
+// const updateRes = schedule.scheduleJob('*/1 * * * *', function(){
+//   signUpTemplate.updateMany({},
+//     { $inc: 
+//         {'Resources.Gold': "Workers.Efficiency.Gold", 'Resources.Marble': "Workers.Efficiency.Marble",'Resources.Food': "Workers.Efficiency.Food",'Resources.Solfour': "Workers.Efficiency.Solfour"}
+//     }, function(err, response){
+//         if(err) console.log(err);
+//         else console.log(response);
+//     });
+// });
 app.listen(port, function () {
  console.log(`Example app listening on port !`);
 });
