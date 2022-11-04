@@ -145,7 +145,7 @@ app.get('/getResources', auth, async function (request, response) {
         .catch(error => console.log(error));
 });
 
-const updateRes = schedule.scheduleJob('*/1 * * * * *', function(){
+const updateRes = schedule.scheduleJob('*/1 * * * *', function(){
   signUpTemplate.updateMany({},
     { $inc: 
         {'Resources.Gold': "$Workers.Efficiency.Mine"}
