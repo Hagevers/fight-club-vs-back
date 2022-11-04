@@ -145,10 +145,11 @@ app.get('/getResources', auth, async function (request, response) {
         .catch(error => console.log(error));
 });
 
-const updateRes = schedule.scheduleJob('*/1 * * * *', function(){
+const updateRes = schedule.scheduleJob('*/1 * * * * *', function(){
   signUpTemplate.updateMany({},
     { $inc: 
-        {'Resources.Gold': "$Workers.Efficiency.Mine", 'Resources.Marble': "$Workers.Efficiency.Quary",'Resources.Food': "$Workers.Efficiency.Farm",'Resources.Solfour': "$Workers.Efficiency.Mountains"}
+        {'Resources.Gold': "$Workers.Efficiency.Mine"}
+        // , 'Resources.Marble': "$Workers.Efficiency.Quary",'Resources.Food': "$Workers.Efficiency.Farm",'Resources.Solfour': "$Workers.Efficiency.Mountains"}
     }, function(err, response){
         if(err) console.log(err);
         else console.log(response);
