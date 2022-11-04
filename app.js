@@ -11,6 +11,7 @@ const auth = require('./middlewares/auth');
 const resourcesTemple = require('./models/ResourcesModel');
 const workersTemplate = require('./models/WorkersModel');
 const cookieParser = require('cookie-parser');
+const schedule = require('node-schedule');
 
 
 mongoose.connect("mongodb+srv://vercel-admin-user:A9b-hCcprdDBfGQ@cluster0.mqyicqe.mongodb.net/?retryWrites=true&w=majority");
@@ -144,6 +145,12 @@ app.get('/getResources', auth, async function (request, response) {
         .catch(error => console.log(error));
 });
 
+const updateRes = schedule.scheduleJob('* /1 * * * *', function(){
+  signUpTemplate.updateMany({},
+    { $inc: 
+        {'Resources.Gold': 1, 'Resources.Marble': 1,'Resources.Food': 1,'Resources.Solfour': 1,}
+    });
+});
 app.listen(port, function () {
  console.log(`Example app listening on port !`);
 });
