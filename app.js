@@ -144,11 +144,16 @@ app.get('/getResources', auth, async function (request, response) {
         .then(data => response.status(200).send(data))
         .catch(error => console.log(error));
 });
-
+app.get('/getMembers', auth, async function (request, response) {
+    signUpTemplate.find({})
+        .select('NickName')
+        .then(data => response.status(200).send(data))
+        .catch(error => console.log(error));
+});
 // const updateRes = schedule.scheduleJob('*/1 * * * * *', function(){
 //   signUpTemplate.updateMany({},
 //     { $inc: 
-//         {"Resources.Gold": "Workers.$.Efficiency.$.Mine"}
+//         {"Resources.Gold": "Workers.Efficiency.Mine"}
 //     }, function(err, response){
 //         if(err) console.log(err);
 //         else console.log(response); 
