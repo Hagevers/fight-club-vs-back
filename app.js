@@ -146,7 +146,7 @@ app.get('/getResources', auth, async function (request, response) {
 });
 app.get('/getMembers', auth, async function (request, response) {
     signUpTemplate.find({})
-        .select('NickName')
+        .select('NickName Power.Soldiers.Ammount')
         .then(data => response.status(200).send(data))
         .catch(error => console.log(error));
 });
