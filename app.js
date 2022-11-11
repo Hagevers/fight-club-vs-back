@@ -76,7 +76,7 @@ app.post('/register', async function (request, response) {
         signUpTemplate.findOne({Email:Email}).then(async (user) => {
             if ( user ) {
                 console.log('user exist');
-                response.status(400).send({msg:"User already exist!"})
+                response.status(200).send({msg:"User already exist"});
             }
             else {
                 console.log('starts to create user');
@@ -125,8 +125,7 @@ app.post('/register', async function (request, response) {
                     console.log('saved');
                 })
                 .catch(error => {
-                    response.status(500).send(error);
-                    console.log('not saved');
+                    response.status(200).send({msg:"username/password is not exist"});
                 })
                 console.log('finished user');
             }
@@ -152,7 +151,7 @@ app.get('/getMembers', auth, async function (request, response) {
 });
 // const updateRes = schedule.scheduleJob('*/1 * * * * *', function(){
 //   signUpTemplate.updateMany({},
-//     { $inc: 
+//     { $: 
 //         {"Resources.Gold": "Workers.Efficiency.Mine"}
 //     }, function(err, response){
 //         if(err) console.log(err);
