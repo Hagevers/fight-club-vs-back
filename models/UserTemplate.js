@@ -27,7 +27,7 @@ const signUpTemplate = new Schema({
         default: ''
     },
     avatar: {
-        type: Buffer
+        type: String
     },
     Resources: {
         Gold: {
