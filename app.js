@@ -88,36 +88,6 @@ app.post('/register', async function (request, response) {
                     password: securePass,
                     avatar: avatar
                 });
-                const resources = new resourcesTemple({
-                    UserId: "",
-                    Available_Workers: 10,
-                    Gold: 750,
-                    Solfour: 750,
-                    Marble: 750,
-                    Food: 750,
-                    Vault_Gold: 0,
-                    Vault_Solfour: 0,
-                    Vault_Marble: 0,
-                    Vault_Food: 0
-                });
-                const workers = new workersTemplate({
-                    UserId: "",
-                    ResourcesId: "",
-                    Workers: 20,
-                    Mine: 5,
-                    Farm: 5,
-                    Quary: 5,
-                    Mountains: 5,
-                    Mine_Efficiency: 1,
-                    Farm_Efficiency: 1,
-                    Quary_Efficiency: 1,
-                    Mountains_Efficiency: 1
-                });
-                resources.UserId = newUser._id;
-                workers.ResourcesId = resources._id;
-                workers.UserId = newUser._id;
-                await resources.save();
-                await workers.save();
                 newUser.save()
                 .then(data => {
                     
