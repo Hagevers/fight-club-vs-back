@@ -69,7 +69,7 @@ app.post('/login', async function (request, response) {
     }
 });
 app.post('/register', async function (request, response) {
-    const {NickName,Email,password} = request.body;
+    const {NickName,Email,password, avatar} = request.body;
     console.log({NickName,Email,password});
     try{
         console.log('before finding');
@@ -86,6 +86,7 @@ app.post('/register', async function (request, response) {
                     NickName: NickName,
                     Email: Email,
                     password: securePass,
+                    avatar: avatar
                 });
                 const resources = new resourcesTemple({
                     UserId: "",
