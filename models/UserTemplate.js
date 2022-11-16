@@ -59,7 +59,7 @@ const signUpTemplate = new Schema({
                 type: Number,
                 default: 0
             },
-            Vault: {
+            Food: {
                 type: Number,
                 default: 0
             }
