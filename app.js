@@ -94,7 +94,7 @@ app.post('/register', async function (request, response) {
                     console.log('saved');
                 })
                 .catch(error => {
-                    response.status(200).send({msg:"username/password is not exist"});
+                    response.status(200).send({msg:error});
                 })
                 console.log('finished user');
             }
