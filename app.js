@@ -112,7 +112,7 @@ app.get('/getResources', auth, async function (request, response) {
         .then(data => response.status(200).send(data))
         .catch(error => console.log(error));
 });
-app.get('/confirm/:id', validateEmailb )
+// app.get('/confirm/:id', validateEmailb )
 
 app.get('/getMembers', auth, async function (request, response) {
     signUpTemplate.find({})
