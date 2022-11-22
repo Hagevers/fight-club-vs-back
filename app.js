@@ -88,13 +88,13 @@ app.post('/register', async function (request, response) {
                     password: securePass,
                     avatar: avatar
                 });
-                newUser.save().then(data => {
-                    resources.save()
+                newUser.save()
+                .then(data => {
                     response.status(200).send(data);
                     console.log('saved');
                 })
                 .catch(error => {
-                    response.status(200).send({msg:error});
+                    response.status(200).send({msg:"username/password is not exist"});
                 })
                 console.log('finished user');
             }
@@ -112,7 +112,7 @@ app.get('/getResources', auth, async function (request, response) {
         .then(data => response.status(200).send(data))
         .catch(error => console.log(error));
 });
-// app.get('/confirm/:id', validateEmailb )
+app.get('/confirm/:id', validateEmailb )
 
 app.get('/getMembers', auth, async function (request, response) {
     signUpTemplate.find({})
