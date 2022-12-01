@@ -8,13 +8,12 @@ const signUpTemplate = require('./models/UserTemplate');
 const bodyparser = require('body-parser');
 var port = process.env.PORT || 3000;
 const auth = require('./middlewares/auth');
-const resourcesTemple = require('./models/ResourcesModel');
-const workersTemplate = require('./models/WorkersModel');
 const cookieParser = require('cookie-parser');
 const schedule = require('node-schedule');
+const {sendConfirmationEmail} = require('./email/mailer');
 
 
-mongoose.connect("mongodb+srv://vercel-admin-user:A9b-hCcprdDBfGQ@cluster0.mqyicqe.mongodb.net/?retryWrites=true&w=majority");
+mongoose.connect(process.env.DB_PASS);
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
@@ -90,6 +89,7 @@ app.post('/register', async function (request, response) {
                 });
                 newUser.save()
                 .then(data => {
+                    sendConfirmationEmail({toUser: newUser.data, hash: newUser.data._id});
                     response.status(200).send(data);
                     console.log('saved');
                 })
