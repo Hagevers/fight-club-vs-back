@@ -106,7 +106,16 @@ app.get('/getResources', auth, async function (request, response) {
         .then(data => response.status(200).send(data))
         .catch(error => console.log(error));
 });
-// app.get('/confirm/:id', validateEmailb )
+app.get('/confirm/:hash', async function (request, response) {
+    const {hash} = request.params;
+    signUpTemplate.findOne({_id: hash}).then(async (user) =>{
+        if(!user) return response.status(422).send("User is not found");
+        signUpTemplate.updateOne({_id: user._id}, {isVerified: true}, function (err, use){
+            if(err) return console.log(err)
+            console.log(use);
+        })
+    })
+})
 
 app.get('/getMembers', auth, async function (request, response) {
     signUpTemplate.find({})
