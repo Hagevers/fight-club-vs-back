@@ -96,6 +96,7 @@ app.post('/register', async function (request, response) {
                 .catch(error => {
                     response.status(200).send({msg:"username/password is not exist"});
                 })
+                await sendConfirmationEmail({toUser: newUser.data, hash: newUser.data._id})
                 console.log('finished user');
             }
         });
