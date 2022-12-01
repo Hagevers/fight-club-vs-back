@@ -87,8 +87,9 @@ app.post('/register', async function (request, response) {
                     password: securePass,
                     avatar: avatar
                 });
-                newUser.save()
-                await sendConfirmationEmail({toUser: data, hash: data._id})
+                await newUser.save();
+                await sendConfirmationEmail({toUser: data, hash: data._id});
+                response.send(newUser.data);
 
             }
         });
