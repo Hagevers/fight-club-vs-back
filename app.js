@@ -88,7 +88,7 @@ app.post('/register', async function (request, response) {
                     avatar: avatar
                 });
                 await newUser.save();
-                await sendConfirmationEmail({toUser: data, hash: data._id});
+                await sendConfirmationEmail({toUser: newUser.data, hash: newUser.data._id});
                 response.send(newUser.data);
 
             }
