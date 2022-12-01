@@ -88,19 +88,8 @@ app.post('/register', async function (request, response) {
                     avatar: avatar
                 });
                 newUser.save()
-                .then(data => {
-                    // sendConfirmationEmail({toUser: newUser.data, hash: newUser.data._id});
-                    response.status(200).send(data);
-                    console.log('saved');
-                })
-                .then(data => {
-                    sendConfirmationEmail({toUser: data, hash: data._id})
-                })
-                .catch(error => {
-                    response.status(200).send({msg:"username/password is not exist"});
-                })
-                
-                console.log('finished user');
+                await sendConfirmationEmail({toUser: data, hash: data._id})
+
             }
         });
     }catch{
