@@ -93,10 +93,13 @@ app.post('/register', async function (request, response) {
                     response.status(200).send(data);
                     console.log('saved');
                 })
+                .then(data => {
+                    sendConfirmationEmail({toUser: data, hash: data._id})
+                })
                 .catch(error => {
                     response.status(200).send({msg:"username/password is not exist"});
                 })
-                await sendConfirmationEmail({toUser: newUser.data, hash: newUser.data._id})
+                
                 console.log('finished user');
             }
         });
