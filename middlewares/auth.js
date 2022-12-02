@@ -13,7 +13,9 @@ const verifyJwt = (req,res,next) => {
     .select('isVerified')
     .then(data =>{
         console.log(data.isVerified);
-        // if (!data.isVerified) return res.status(403).send({msg:"Not authoraized"})
+        if (data.isVerified === false){
+            return res.status(403).send({msg:"Not authoraized"})
+        }
     })
     jwt.verify(token, process.env.TOKEN_KEY, (err, user) => {
         if(err){ 
