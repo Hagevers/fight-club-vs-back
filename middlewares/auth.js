@@ -9,19 +9,22 @@ const verifyJwt = (req,res,next) => {
         return res.status(401).send({msg:"Please login first"})
     }
     let code = jwt.decode(token);
-    let result = user.findOne({_id: code.user_id})
+    user.findOne({_id: code.user_id})
     .select('isVerified')
-    console.log(result);
-    // if (result.isVerified === false){
-    //     res.status(401).send('User is not authenticated yet');
-    // }
-    jwt.verify(token, process.env.TOKEN_KEY, (err, user) => {
-        if(err){ 
-            return res.status(403).send({msg:"Not authoraized"})
+    .then(data =>{
+        console.log(data.isVerified);
+        if (data.isVerified === false){
+            res.status(401).send('User is not authenticated yet');
+        }else{
+            jwt.verify(token, process.env.TOKEN_KEY, (err, user) => {
+                if(err){ 
+                    return res.status(403).send({msg:"Not authoraized"})
+                }
+                req.token = token;
+                next();
+            });
         }
-        req.token = token;
-        next();
-    });
+    })
 }
 
 module.exports = verifyJwt
