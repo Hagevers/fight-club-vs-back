@@ -17,7 +17,7 @@ exports.sendConfirmationEmail = function ({toUser, hash}){
             `
                 <h3>Hello ${toUser.NickName}</h3>
                 <p>Thanks for registering to Fight-Club, please follow the instructions to complete your registeration</p>
-                <p>To activate your account please follow this link: <a target="_" href="http://localhost:3000/confirm/${hash}">Activate!</a></p>
+                <p>To activate your account please follow this link: <a target="_" href="https://powerful-anchorage-21815.herokuapp.com/confirm/${hash}">Activate!</a></p>
             `
         }
 
