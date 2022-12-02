@@ -9,10 +9,10 @@ const verifyJwt = (req,res,next) => {
         return res.status(401).send({msg:"Please login first"})
     }
     let code = jwt.decode(token);
-    let res = user.findOne({_id: code.user_id})
+    let result = user.findOne({_id: code.user_id})
     .select('isVerified')
-    console.log(res.isVerified);
-    if (res.isVerified === false){
+    console.log(result.isVerified);
+    if (result.isVerified === false){
         res.status(401).send('User is not authenticated yet');
     }
     jwt.verify(token, process.env.TOKEN_KEY, (err, user) => {
