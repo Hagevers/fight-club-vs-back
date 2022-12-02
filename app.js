@@ -112,7 +112,7 @@ app.get('/confirm/:hash', async function (request, response) {
         if(!user) return response.status(422).send("User is not found");
         signUpTemplate.updateOne({_id: user._id}, {isVerified: true}, function (err, use){
             if(err) return console.log(err)
-            return response.status(200).send(use)
+            return response.redirect('http://localhost:3000/login')
         })
     })
 })
