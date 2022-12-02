@@ -12,6 +12,7 @@ const verifyJwt = (req,res,next) => {
     user.find({_id: code.user_id})
     .select('isVerified')
     .then(data =>{
+        console.log(data);
         if (!data) return res.status(403).send({msg:"Not authoraized"})
     })
     jwt.verify(token, process.env.TOKEN_KEY, (err, user) => {
