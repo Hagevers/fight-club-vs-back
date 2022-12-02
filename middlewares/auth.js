@@ -14,7 +14,7 @@ const verifyJwt = (req,res,next) => {
     .then(data =>{
         console.log(data.isVerified);
         if (data.isVerified === false){
-            res.status(403).send({msg:"User Not Verified"});
+            res.send(403, "User Not Verified");
             req.connection.destroy();
         }
     })
