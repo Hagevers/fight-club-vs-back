@@ -9,11 +9,11 @@ const verifyJwt = (req,res,next) => {
         return res.status(401).send({msg:"Please login first"})
     }
     let code = jwt.decode(token);
-    user.find({_id: code.user_id})
+    user.findOne({_id: code.user_id})
     .select('isVerified')
     .then(data =>{
         console.log(data.isVerified);
-        if (!data.isVerified) return res.status(403).send({msg:"Not authoraized"})
+        // if (!data.isVerified) return res.status(403).send({msg:"Not authoraized"})
     })
     jwt.verify(token, process.env.TOKEN_KEY, (err, user) => {
         if(err){ 
