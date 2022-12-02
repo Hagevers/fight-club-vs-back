@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const user = require('../models/UserTemplate');
 
 const verifyJwt = (req,res,next) => {
     console.log('entered middle');
@@ -8,7 +9,11 @@ const verifyJwt = (req,res,next) => {
         return res.status(401).send({msg:"Please login first"})
     }
     let code = jwt.decode(token);
-    console.log(code);
+    user.find({_id: code.user_id})
+    .select('isVerified')
+    .then(data =>{
+        if (data==false) return res.status(403).send({msg:"Not authoraized"})
+    })
     jwt.verify(token, process.env.TOKEN_KEY, (err, user) => {
         if(err){ 
             return res.status(403).send({msg:"Not authoraized"})
