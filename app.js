@@ -112,13 +112,13 @@ app.get('/confirm/:hash', async function (request, response) {
         if(!user) return response.status(422).send("User is not found");
         signUpTemplate.updateOne({_id: user._id}, {isVerified: true}, function (err, use){
             if(err) return console.log(err)
-            return response.redirect('http://localhost:3000/login')
+            return response.send({msg:'Your account has been successfully validate, please login to start playing.'}).redirect('http://localhost:3000/confirm')
         })
     })
 })
 
 app.get('/getMembers', auth, async function (request, response) {
-    signUpTemplate.find({})
+    signUpTemplate.find({isVerified:true})
         .select('NickName Power.Soldiers.Ammount')
         .then(data => response.status(200).send(data))
         .catch(error => console.log(error));
