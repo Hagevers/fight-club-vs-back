@@ -20,14 +20,14 @@ db.once('open', function() {
     console.log("Connection Successful!");
 })
 
-app.use(cookieParser())
+app.use(cookieParser());
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({
   extended: true
 }));
 
-app.use(cors())
-app.options('*', cors())
+app.use(cors());
+app.options('*', cors());
 
 app.get('/', function (request, response) {
 });
@@ -115,7 +115,7 @@ app.get('/confirm/:hash', async function (request, response) {
             return response.send({msg:'Your account has been successfully validate, please login to start playing.'}).redirect('http://localhost:3000/confirm')
         })
     })
-})
+});
 
 app.get('/getMembers', auth, async function (request, response) {
     signUpTemplate.find({isVerified:true})
