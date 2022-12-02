@@ -11,10 +11,10 @@ const verifyJwt = (req,res,next) => {
     let code = jwt.decode(token);
     let result = user.findOne({_id: code.user_id})
     .select('isVerified')
-    console.log(result.isVerified);
-    if (result.isVerified === false){
-        res.status(401).send('User is not authenticated yet');
-    }
+    console.log(result);
+    // if (result.isVerified === false){
+    //     res.status(401).send('User is not authenticated yet');
+    // }
     jwt.verify(token, process.env.TOKEN_KEY, (err, user) => {
         if(err){ 
             return res.status(403).send({msg:"Not authoraized"})
