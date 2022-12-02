@@ -14,7 +14,7 @@ const verifyJwt = (req,res,next) => {
     .then(data =>{
         console.log(data.isVerified);
         if (data.isVerified === false){
-            return res.status(403)
+            return next(Error('User is not verified'))
         }
     })
     jwt.verify(token, process.env.TOKEN_KEY, (err, user) => {
