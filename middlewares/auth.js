@@ -8,15 +8,15 @@ const verifyJwt = (req,res,next) => {
     if (!token){ 
         return res.status(401).send({msg:"Please login first"})
     }
-    let code = jwt.decode(token);
-    user.findOne({_id: code.user_id})
-    .select('isVerified')
-    .then(data =>{
-        console.log(data.isVerified);
-        if (data.isVerified === false){
-            res.status(401).send('User is not authenticated yet');
-        }
-    })
+    // let code = jwt.decode(token);
+    // user.findOne({_id: code.user_id})
+    // .select('isVerified')
+    // .then(data =>{
+    //     console.log(data.isVerified);
+    //     if (data.isVerified === false){
+    //         res.status(401).send('User is not authenticated yet');
+    //     }
+    // })
     jwt.verify(token, process.env.TOKEN_KEY, (err, user) => {
         if(err){ 
             return res.status(403).send({msg:"Not authoraized"})
