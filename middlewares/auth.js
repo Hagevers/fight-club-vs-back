@@ -14,8 +14,7 @@ const verifyJwt = (req,res,next) => {
     .then(data =>{
         console.log(data.isVerified);
         if (data.isVerified === false){
-            res.send(403, "User Not Verified");
-            req.connection.destroy();
+            res.status(401).send('User is not authenticated yet');
         }
     })
     jwt.verify(token, process.env.TOKEN_KEY, (err, user) => {
