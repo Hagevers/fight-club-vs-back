@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const signUpTemplate = require('./models/UserTemplate');
 const bodyparser = require('body-parser');
-var port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 const auth = require('./middlewares/auth');
 const cookieParser = require('cookie-parser');
 const schedule = require('node-schedule');
@@ -123,7 +123,9 @@ app.get('/getMembers', auth, async function (request, response) {
         .then(data => response.status(200).send(data))
         .catch(error => console.log(error));
 });
+
 // const updateRes = schedule.scheduleJob('*/1 * * * * *', function(){
+
 //   signUpTemplate.updateMany({},
 //     { $: 
 //         {"Resources.Gold": "Workers.Efficiency.Mine"}
@@ -132,6 +134,7 @@ app.get('/getMembers', auth, async function (request, response) {
 //         else console.log(response); 
 //     });
 // });
+
 app.listen(port, function () {
  console.log(`Example app listening on port !`);
 });
