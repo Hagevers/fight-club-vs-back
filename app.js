@@ -9,7 +9,7 @@ const bodyparser = require('body-parser');
 const port = process.env.PORT || 3000;
 const auth = require('./middlewares/auth');
 const cookieParser = require('cookie-parser');
-const schedule = require('node-schedule');
+// const schedule = require('node-schedule');
 const {sendConfirmationEmail} = require('./email/mailer');
 
 
