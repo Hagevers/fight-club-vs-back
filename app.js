@@ -138,7 +138,7 @@ const updateRes = schedule.scheduleJob('* */1 * * * *', function(){
                 else console.log(resource);
             })
         })
-    .catch('Error before updating resources')
+    .catch(console.log('Error before updating resources'))
     })
 //   signUpTemplate.updateMany({},
 //     { $: 
