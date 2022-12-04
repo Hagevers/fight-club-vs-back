@@ -136,7 +136,7 @@ const updateRes = schedule.scheduleJob('*/1 * * * *', function(){
             // console.log('this is the Workers stats', Workers);
             // Gold = Gold + (Workers.Efficiency.Mine * Workers.Mine);
             // console.log('this is the gold to add', addGold);
-            member.$inc({'Resources.Gold': 10});
+            member.$inc('Resources.Gold',10);
             // member.updateOne({},{}, function(err, resource) {
             //     if(err) console.log(err);
             //     else console.log(resource);
