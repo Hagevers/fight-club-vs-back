@@ -11,7 +11,7 @@ exports.sendConfirmationEmail = function ({toUser, hash}){
         })
         const message = {
             from: process.env.MAIL_USER,
-            to: toUser.data.Email,
+            to: toUser.Email,
             subject: 'Confirmation Code',
             html: 
             `
