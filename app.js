@@ -125,7 +125,7 @@ app.get('/getMembers', auth, async function (request, response) {
         .catch(error => console.log(error));
 });
 
-const updateRes = schedule.scheduleJob('* */1 * * * *', function(){
+const updateRes = schedule.scheduleJob('* 1 * * * *', function(){
     signUpTemplate.find({isVerified: true})
     .select('Resources Workers')
     .then(data => {
