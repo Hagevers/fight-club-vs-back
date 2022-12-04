@@ -130,16 +130,17 @@ const updateRes = schedule.scheduleJob('*/1 * * * *', function(){
     .select('Resources Workers')
     .then(data => {
         data.map(member => {
-            const {Gold} = member.Resources
-            console.log('this is the Gold he has', Gold);
-            const {Workers} = member
-            console.log('this is the Workers stats', Workers);
-            Gold = Gold + (Workers.Efficiency.Mine * Workers.Mine);
-            console.log('this is the gold to add', addGold);
-            signUpTemplate.updateMany({},{...Gold}, function(err, resource) {
-                if(err) console.log(err);
-                else console.log(resource);
-            })
+            // const {Gold} = member.Resources
+            // console.log('this is the Gold he has', Gold);
+            // const {Workers} = member
+            // console.log('this is the Workers stats', Workers);
+            // Gold = Gold + (Workers.Efficiency.Mine * Workers.Mine);
+            // console.log('this is the gold to add', addGold);
+            member.$inc({'Resources.Gold': 10})
+            // member.updateOne({},{}, function(err, resource) {
+            //     if(err) console.log(err);
+            //     else console.log(resource);
+            // })
         })
     })
     .catch(error => console.log('Error before updating resources'))
