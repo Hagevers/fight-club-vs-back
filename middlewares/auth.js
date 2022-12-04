@@ -14,7 +14,7 @@ const verifyJwt = (req,res,next) => {
     .then(data =>{
         console.log(data.isVerified);
         if (data.isVerified === false){
-            res.redirect('http://localhost:3000/confirm');
+            return res.status(403).send({msg: "User not authenticate yet"})
         }else{
             jwt.verify(token, process.env.TOKEN_KEY, (err, user) => {
                 if(err){ 
