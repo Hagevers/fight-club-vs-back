@@ -125,14 +125,14 @@ app.get('/getMembers', auth, async function (request, response) {
         .catch(error => console.log(error));
 });
 
-const updateRes = schedule.scheduleJob('*/1 * * * * *', function(){
+const updateRes = schedule.scheduleJob('* */1 * * * *', function(){
     signUpTemplate.find({isVerified: true})
     .select('Resources Workers')
     .then(data => {
         data.map(member => {
             const {Gold} = member.Resources
             const {Workers} = member
-            const goldToAdd = Gold + Workers.Efficiency.Mine * Workers.Mine;
+            const goldToAdd = Gold + (Workers.Efficiency.Mine * Workers.Mine);
             signUpTemplate.updateMany({},{Gold: goldToAdd})
             .then(console.log('updated resources'))
             .catch(console.log('error when updating res'))
