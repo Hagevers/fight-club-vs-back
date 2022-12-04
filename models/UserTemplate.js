@@ -29,6 +29,10 @@ const signUpTemplate = new Schema({
     avatar: {
         type: String
     },
+    alliance: {
+        type: String,
+        default: ''
+    },
     Resources: {
         Gold: {
             type: Number,
@@ -45,6 +49,10 @@ const signUpTemplate = new Schema({
         Food: {
             type: Number,
             default: 750
+        },
+        Gems: {
+            type: Number,
+            default: 900
         },
         Vault: {
             Gold: {

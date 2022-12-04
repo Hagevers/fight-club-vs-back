@@ -9,7 +9,7 @@ const bodyparser = require('body-parser');
 const port = process.env.PORT || 3000;
 const auth = require('./middlewares/auth');
 const cookieParser = require('cookie-parser');
-// const schedule = require('node-schedule');
+const schedule = require('node-schedule');
 const {sendConfirmationEmail} = require('./email/mailer');
 
 
@@ -120,13 +120,24 @@ app.get('/confirm/:hash', async function (request, response) {
 
 app.get('/getMembers', auth, async function (request, response) {
     signUpTemplate.find({isVerified:true})
-        .select('NickName Power.Soldiers.Ammount')
+        .select('NickName Power.Soldiers.Ammount alliance')
         .then(data => response.status(200).send(data))
         .catch(error => console.log(error));
 });
 
-// const updateRes = schedule.scheduleJob('*/1 * * * * *', function(){
-
+const updateRes = schedule.scheduleJob('*/1 * * * * *', function(){
+    signUpTemplate.find({isVerified: true})
+    .select('Resources Workers')
+    .then(data => {
+        data.map(member => {
+            const {Resources, Workers} = member
+            const goldToAdd = Resources.Gold + Workers.Efficiency.Mine * Workers.Mine;
+            signUpTemplate.updateMany({},{Resources: goldToAdd})
+            .then(console.log('updated resources'))
+            .catch(console.log('error when updating res'))
+        })
+    .catch('Error before updating resources')
+    })
 //   signUpTemplate.updateMany({},
 //     { $: 
 //         {"Resources.Gold": "Workers.Efficiency.Mine"}
@@ -134,7 +145,8 @@ app.get('/getMembers', auth, async function (request, response) {
 //         if(err) console.log(err);
 //         else console.log(response); 
 //     });
-// });
+});
+
 
 app.listen(port, function () {
  console.log(`Example app listening on port !`);
