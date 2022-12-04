@@ -138,8 +138,8 @@ const updateRes = schedule.scheduleJob('* */1 * * * *', function(){
                 else console.log(resource);
             })
         })
-    .catch(error => console.log('Error before updating resources'))
     })
+    .catch(error => console.log('Error before updating resources'))
 //   signUpTemplate.updateMany({},
 //     { $: 
 //         {"Resources.Gold": "Workers.Efficiency.Mine"}
