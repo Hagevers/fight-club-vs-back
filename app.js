@@ -131,6 +131,7 @@ const updateRes = schedule.scheduleJob('*/1 * * * * *', function(){
     .then(data => {
         data.map(member => {
             const {Gold} = member.Resources
+            const {Workers} = member
             const goldToAdd = Gold + Workers.Efficiency.Mine * Workers.Mine;
             signUpTemplate.updateMany({},{Gold: goldToAdd})
             .then(console.log('updated resources'))
