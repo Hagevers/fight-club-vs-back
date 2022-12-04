@@ -130,9 +130,9 @@ const updateRes = schedule.scheduleJob('*/1 * * * * *', function(){
     .select('Resources Workers')
     .then(data => {
         data.map(member => {
-            const {Resources, Workers} = member
-            const goldToAdd = Resources.Gold + Workers.Efficiency.Mine * Workers.Mine;
-            signUpTemplate.updateMany({},{Resources: goldToAdd})
+            const {Gold} = member.Resources
+            const goldToAdd = Gold + Workers.Efficiency.Mine * Workers.Mine;
+            signUpTemplate.updateMany({},{Gold: goldToAdd})
             .then(console.log('updated resources'))
             .catch(console.log('error when updating res'))
         })
