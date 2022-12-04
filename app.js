@@ -11,6 +11,7 @@ const auth = require('./middlewares/auth');
 const cookieParser = require('cookie-parser');
 const schedule = require('node-schedule');
 const {sendConfirmationEmail} = require('./email/mailer');
+require('dotenv').config();
 
 
 mongoose.connect(process.env.DB_PASS);
