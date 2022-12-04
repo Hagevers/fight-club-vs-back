@@ -141,7 +141,7 @@ const updateRes = schedule.scheduleJob('*/1 * * * *', function(){
             //     if(err) console.log(err);
             //     else console.log(resource);
             // })
-            signUpTemplate.updateOne({_id: member._id},{$inc: {'Resources.Gold' : 10}})
+            signUpTemplate.updateOne({_id: member._id},{$inc: {"Resources.Gold" : 10}})
         })
     })
     .catch(error => console.log('Error before updating resources'))
