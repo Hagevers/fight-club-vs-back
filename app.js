@@ -132,13 +132,13 @@ const updateRes = schedule.scheduleJob('* */1 * * * *', function(){
         data.map(member => {
             const {Gold} = member.Resources
             const {Workers} = member
-            const goldToAdd = Gold + (Workers.Efficiency.Mine * Workers.Mine);
-            signUpTemplate.updateMany({},{Gold: goldToAdd}, function(err, resource) {
+            Gold = Gold + (Workers.Efficiency.Mine * Workers.Mine);
+            signUpTemplate.updateMany({},{Gold}, function(err, resource) {
                 if(err) console.log(err);
                 else console.log(resource);
             })
         })
-    .catch(console.log('Error before updating resources'))
+    .catch(error => console.log('Error before updating resources'))
     })
 //   signUpTemplate.updateMany({},
 //     { $: 
