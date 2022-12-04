@@ -133,9 +133,10 @@ const updateRes = schedule.scheduleJob('* */1 * * * *', function(){
             const {Gold} = member.Resources
             const {Workers} = member
             const goldToAdd = Gold + (Workers.Efficiency.Mine * Workers.Mine);
-            signUpTemplate.updateMany({},{Gold: goldToAdd})
-            .then(console.log('updated resources'))
-            .catch(console.log('error when updating res'))
+            signUpTemplate.updateMany({},{Gold: goldToAdd}, function(err, resource) {
+                if(err) console.log(err);
+                else console.log(resource);
+            })
         })
     .catch('Error before updating resources')
     })
