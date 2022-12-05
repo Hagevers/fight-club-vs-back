@@ -126,18 +126,21 @@ app.get('/getMembers', auth, async function (request, response) {
         .catch(error => console.log(error));
 });
 
-// const updateRes = schedule.scheduleJob('*/1 * * * *', function(){
-//     signUpTemplate.find({isVerified: true})
-//     .select('Resources Workers')
-//     .then(data => {
-//         data.map(member => {
-//             signUpTemplate.updateMany({_id:member._id},
-//                 {$inc: {
-//                     "Resources.Gold" : 1
-//                 }},{new: true })
-//         })
-//     })
-//     .catch(error => console.log('Error before updating resources'))
+const updateRes = schedule.scheduleJob('*/1 * * * *', function(){
+    signUpTemplate.find({isVerified: true})
+    .select('Resources Workers')
+    .then(data => {
+        data.map(member => {
+            signUpTemplate.findOneAndUpdate({_id:member._id},
+                {$inc: {
+                    "Resources.Gold" : 1
+                }},{new: true }, function (err, use){
+                    if (err) console.log(err);
+                    else console.log(use);
+                })
+        })
+    })
+    .catch(error => console.log('Error before updating resources'))
 // //   signUpTemplate.updateMany({},
 // //     { $: 
 // //         {"Resources.Gold": "Workers.Efficiency.Mine"}
@@ -145,7 +148,7 @@ app.get('/getMembers', auth, async function (request, response) {
 // //         if(err) console.log(err);
 // //         else console.log(response); 
 // //     });
-// });
+});
 
 
 app.listen(port, function () {
