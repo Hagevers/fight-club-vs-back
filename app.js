@@ -131,9 +131,11 @@ const updateRes = schedule.scheduleJob('*/1 * * * *', function(){
     .select('Resources Workers')
     .then(data => {
         data.map(member => {
+            const {Resources, Workers} = member;
+            const goldToAdd = Workers.Efficiency.Mine * Workers.Mine;
             signUpTemplate.findOneAndUpdate({_id:member._id},
                 {$inc: {
-                    "Resources.Gold" : 1
+                    "Resources.Gold" : goldToAdd
                 }},{new: true }, function (err, use){
                     if (err) console.log(err);
                     else console.log(use);
