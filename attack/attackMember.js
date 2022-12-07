@@ -1,7 +1,8 @@
 const schema = require('../models/UserTemplate');
 
-exports.attackMember = function(member){
-    schema.findOne({_id: member._id})
+exports.attackMember = function(request, response){
+    const {id} = request.params;
+    schema.findOne({_id: id})
     .select('Power Resources')
     .then(data => {
         console.log(data);
