@@ -11,6 +11,7 @@ const auth = require('./middlewares/auth');
 const cookieParser = require('cookie-parser');
 const schedule = require('node-schedule');
 const {sendConfirmationEmail} = require('./email/mailer');
+const {attackMember} = require('./attack/attackMember');
 require('dotenv').config();
 
 
@@ -125,6 +126,8 @@ app.get('/getMembers', auth, async function (request, response) {
         .then(data => response.status(200).send(data))
         .catch(error => console.log(error));
 });
+
+app.post('/attack/:id', auth, attackMember);
 
 const updateRes = schedule.scheduleJob('*/1 * * * *', function(){
     signUpTemplate.find({isVerified: true})
