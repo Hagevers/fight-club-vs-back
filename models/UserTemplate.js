@@ -89,9 +89,10 @@ const signUpTemplate = new Schema({
             }
         },
         Items: [
-            {item: {
-                type: String
-            }}
+            {
+                name: {type:String},
+                power: {type: Number}
+            }
         ]
     },
     Workers: {

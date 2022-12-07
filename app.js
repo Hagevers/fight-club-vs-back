@@ -87,7 +87,8 @@ app.post('/register', async function (request, response) {
                     NickName: NickName,
                     Email: Email,
                     password: securePass,
-                    avatar: avatar
+                    avatar: avatar,
+                    Items: {'Wand':10}
                 });
                 await newUser.save();
                 console.log(newUser);

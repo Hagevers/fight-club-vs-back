@@ -1,11 +1,16 @@
 const schema = require('../models/UserTemplate');
 
 exports.attackMember = function(request, response){
-    const {id} = request.params;
-    schema.findOne({_id: id})
+    const {attacked} = request.params;
+    const {attacker} = request.body;
+    schema.findOne({_id: attacked})
     .select('Power Resources')
     .then(data => {
-        console.log(data);
+        const attackDet = schema.findOne({_id:attacker})
+        .select('Power')
+        AttackerPower = attackDet.Power.Soldiers.Ammount * attackDet.Power.Items;
+        AttackedPower = data.Power.Soldiers.Ammount * data.Power.Items;
+        console.log(AttackerPower + " " + AttackedPower);
     })
     .catch(err => console.log(err))
     
