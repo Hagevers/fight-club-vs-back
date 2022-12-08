@@ -16,8 +16,8 @@ exports.attackMember = function(request, response){
             
             data.Power.Items.forEach(item => attackedPower += item);
             attackedPower *= data.Power.Soldiers.Ammount;
-            
-            console.log(AttackerPower + " " + AttackedPower);
+
+            console.log(attackerPower + " " + attackedPower);
         });
         
        
