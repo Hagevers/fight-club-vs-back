@@ -4,7 +4,7 @@ exports.attackMember = function(request, response){
     const {id} = request.params;
     const {attacker} = request.body;
     
-    const attackerPower = 0,attackedPower = 0;
+    let attackerPower = 0,attackedPower = 0;
     schema.findOne({_id: id})
     .select('Power Resources')
     .then(data => {
