@@ -12,7 +12,8 @@ exports.attackMember = function(request, response){
         .then(attackDet => {
             console.log(attackDet);
             AttackerPower = attackDet.Power.Soldiers.Ammount * attackDet.Power.Items;
-        })
+        });
+        console.log(data);
         AttackedPower = data.Power.Soldiers.Ammount * data.Power.Items;
         console.log(AttackerPower + " " + AttackedPower);
        

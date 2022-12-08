@@ -130,7 +130,7 @@ app.get('/getMembers', auth, async function (request, response) {
 
 app.post('/attack/:id', auth, attackMember);
 
-const updateRes = schedule.scheduleJob('*/1 * * * *', function(){
+const updateRes = schedule.scheduleJob('*/15 * * * *', function(){
     signUpTemplate.find({isVerified: true})
     .select('Resources Workers')
     .then(data => {
