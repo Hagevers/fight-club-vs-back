@@ -11,9 +11,9 @@ exports.attackMember = function(request, response){
         .then(attackDet => {
             console.log(attackDet);
             AttackerPower = attackDet.Power.Soldiers.Ammount * attackDet.Power.Items;
-            AttackedPower = data.Power.Soldiers.Ammount * data.Power.Items;
-            console.log(AttackerPower + " " + AttackedPower);
         })
+        AttackedPower = data.Power.Soldiers.Ammount * data.Power.Items;
+        console.log(AttackerPower + " " + AttackedPower);
        
     })
     .catch(err => console.log(err))
