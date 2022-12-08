@@ -19,8 +19,8 @@ exports.attackMember = function(request, response){
             attackedPower *= data.Power.Soldiers.Ammount;
 
             if(attackerPower > attackedPower){
-                attackDet.$inc('Resources.Gold', (data.Resources.Gold * 0.3));
-                data.$inc('Resources.Gold', -(data.Resources.Gold * 0.3));
+                attackDet.$inc('Resources.Gold', (data.Resources.Gold * 0.3)).save();
+                data.$inc('Resources.Gold', -(data.Resources.Gold * 0.3)).save();
             }
 
         });
