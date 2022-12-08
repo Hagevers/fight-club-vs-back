@@ -9,17 +9,20 @@ exports.attackMember = function(request, response){
     .select('Power Resources')
     .then(data => {
         schema.findOne({_id:attacker})
-        .select('Power')
+        .select('Power Resources')
         .then(attackDet => {
-            attackerPower = attackDet.Power.Items.map(item => attackerPower += item.power);
 
-            console.log(attackerPower);
+            attackDet.Power.Items.map(item => attackerPower += item.power);
             attackerPower *= attackDet.Power.Soldiers.Ammount;
             
             data.Power.Items.map(item => attackedPower += item.power);
             attackedPower *= data.Power.Soldiers.Ammount;
 
-            console.log(attackerPower + " " + attackedPower);
+            if(attackerPower > attackedPower){
+                attackDet.$inc('Resources.Gold', (data.Resources.Gold * 0.3));
+                data.$inc('Resources.Gold', -(data.Resources.Gold * 0.3));
+            }
+
         });
         
        
