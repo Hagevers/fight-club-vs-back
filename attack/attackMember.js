@@ -12,6 +12,8 @@ exports.attackMember = function(request, response){
         .select('Power')
         .then(attackDet => {
             attackDet.Power.Items.forEach(item => attackerPower += item);
+
+            console.log(attackerPower);
             attackerPower *= attackDet.Power.Soldiers.Ammount;
             
             data.Power.Items.forEach(item => attackedPower += item);
