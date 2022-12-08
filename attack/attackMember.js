@@ -11,7 +11,7 @@ exports.attackMember = function(request, response){
         schema.findOne({_id:attacker})
         .select('Power')
         .then(attackDet => {
-            attackDet.Power.Items.map(item => attackerPower += item.power);
+            attackerPower = attackDet.Power.Items.map(item => attackerPower += item.power);
 
             console.log(attackerPower);
             attackerPower *= attackDet.Power.Soldiers.Ammount;
