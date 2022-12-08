@@ -11,12 +11,12 @@ exports.attackMember = function(request, response){
         schema.findOne({_id:attacker})
         .select('Power')
         .then(attackDet => {
-            attackDet.Power.Items.forEach(item => attackerPower += item.Power);
+            attackDet.Power.Items.forEach(item => attackerPower += item.power);
 
             console.log(attackerPower);
             attackerPower *= attackDet.Power.Soldiers.Ammount;
             
-            data.Power.Items.forEach(item => attackedPower += item.Power);
+            data.Power.Items.forEach(item => attackedPower += item.power);
             attackedPower *= data.Power.Soldiers.Ammount;
 
             console.log(attackerPower + " " + attackedPower);
