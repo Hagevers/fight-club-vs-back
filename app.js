@@ -88,9 +88,9 @@ app.post('/register', async function (request, response) {
                     Email: Email,
                     password: securePass,
                     avatar: avatar,
-                    Items: {'Wand':10}
                 });
                 await newUser.save();
+                newUser.Power.Items.push({name:'Wand',power: 10});
                 console.log(newUser);
                 await sendConfirmationEmail({toUser: newUser, hash: newUser._id});
                 response.send(newUser);
