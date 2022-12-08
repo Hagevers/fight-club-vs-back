@@ -3,6 +3,7 @@ const schema = require('../models/UserTemplate');
 exports.attackMember = function(request, response){
     const {attacked} = request.params;
     const {attacker} = request.body;
+    let AttackerPower,AttackedPower;
     schema.findOne({_id: attacked})
     .select('Power Resources')
     .then(data => {
