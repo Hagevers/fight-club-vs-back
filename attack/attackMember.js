@@ -43,7 +43,7 @@ exports.attackMember = function(request, response){
                     Alliance: attackDet.alliance
                 });
                 newReport.save();
-                return response.status(200).send(newReport.data)
+                return response.status(200).send(newReport)
             }
         });
     })
