@@ -35,10 +35,10 @@ exports.attackMember = function(request, response){
                     Attacker: attackDet.NickName,
                     Defender: data.NickName,
                     HaveWon: true,
-                    Gold: attackDet.Resources.Gold + data.Resources.Gold,
-                    Marble: attackDet.Resources.Marble + data.Resources.Marble,
-                    Solfour: attackDet.Resources.Solfour + data.Resources.Solfour,
-                    Food: attackDet.Resources.Food + data.Resources.Food,
+                    Gold: data.Resources.Gold * 0.3,
+                    Marble: data.Resources.Marble * 0.3,
+                    Solfour: data.Resources.Solfour * 0.3,
+                    Food: data.Resources.Food * 0.3,
                     SoldiersDied: attackDet.Power.Soldiers.Ammount,
                     Alliance: attackDet.alliance
                 });
