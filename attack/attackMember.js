@@ -45,7 +45,7 @@ exports.attackMember = function(request, response){
 
                 });
                 newReport.save().then(data=> {
-                    response.status(200).send(data)
+                    return response.status(200).send(data)
                 });
             }
         });
