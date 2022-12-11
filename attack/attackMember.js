@@ -4,7 +4,6 @@ const report = require('../models/ReportModel');
 exports.attackMember = function(request, response){
     const {id} = request.params;
     const {attacker} = request.body;
-    let resources = {};
     let attackerPower = 0,attackedPower = 0;
     schema.findOne({_id: id})
     .select('Power Resources')
@@ -42,15 +41,10 @@ exports.attackMember = function(request, response){
                     Food: attackDet.Resources.Food + data.Resources.Food,
                     SoldiersDied: attackDet.Power.Soldiers.Ammount,
                     Alliance: attackDet.alliance
-
                 });
-                newReport.save().then(data=> {
-                    return response.status(200).send(data)
-                });
+                newReport.save();
             }
         });
-        
-       
     })
     .catch(err => console.log(err))
     
