@@ -19,14 +19,14 @@ exports.attackMember = function(request, response){
             attackedPower *= data.Power.Soldiers.Ammount;
 
             if(attackerPower > attackedPower){
-                data.$inc('Resources.Gold', -(data.Resources.Gold * 0.3)).save();
-                attackDet.$inc('Resources.Gold', (data.Resources.Gold * 0.3)).save();
+                data.$inc('Resources.Gold', -(data.Resources.Gold * 0.3))
+                attackDet.$inc('Resources.Gold', (data.Resources.Gold * 0.3))
 
-                data.$inc('Resources.Marble', -(data.Resources.Marble * 0.3)).save();
-                attackDet.$inc('Resources.Marble', (data.Resources.Marble * 0.3)).save();
+                data.$inc('Resources.Marble', -(data.Resources.Marble * 0.3))
+                attackDet.$inc('Resources.Marble', (data.Resources.Marble * 0.3))
 
-                data.$inc('Resources.Solfour', -(data.Resources.Solfour * 0.3)).save();
-                attackDet.$inc('Resources.Solfour', (data.Resources.Solfour * 0.3)).save();
+                data.$inc('Resources.Solfour', -(data.Resources.Solfour * 0.3))
+                attackDet.$inc('Resources.Solfour', (data.Resources.Solfour * 0.3))
 
                 data.$inc('Resources.Food', -(data.Resources.Food * 0.3)).save();
                 attackDet.$inc('Resources.Food', (data.Resources.Food * 0.3)).save();
