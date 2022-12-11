@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const ReportModel = new Schema({
     Attacker: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: String,
         required: true
     },
     Defender: {
