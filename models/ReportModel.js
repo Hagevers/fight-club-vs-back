@@ -10,6 +10,10 @@ const ReportModel = new Schema({
         type: String,
         required: true
     },
+    Defender_Id: {
+        type: String,
+        required: true
+    },
     HaveWon: {
         type: Boolean,
         required: true

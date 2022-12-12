@@ -34,6 +34,7 @@ exports.attackMember = function(request, response){
                 const newReport = new report({
                     Attacker: attackDet.NickName,
                     Defender: data.NickName,
+                    Defender_Id: data._id,
                     HaveWon: true,
                     Gold: data.Resources.Gold * 0.3,
                     Marble: data.Resources.Marble * 0.3,
