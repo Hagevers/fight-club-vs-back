@@ -50,3 +50,10 @@ exports.attackMember = function(request, response){
     .catch(err => console.log(err))
     
 }
+
+exports.getReports = function(request,response){
+    const {id} = request.params;
+    report.findOne({_id: id}).then(data => {
+        return response.status(200).send(data);
+    });
+}
