@@ -11,7 +11,7 @@ const ReportModel = new Schema({
         required: true
     },
     Defender_Id: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
         required: true
     },
     HaveWon: {
