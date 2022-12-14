@@ -19,27 +19,27 @@ exports.attackMember = function(request, response){
             attackedPower *= data.Power.Soldiers.Ammount;
 
             if(attackerPower > attackedPower){
-                data.$inc('Resources.Gold', -(data.Resources.Gold * 0.3))
-                attackDet.$inc('Resources.Gold', (data.Resources.Gold * 0.3))
+                data.$inc('Resources.Gold', -Math.ceil((data.Resources.Gold * 0.3)))
+                attackDet.$inc('Resources.Gold', Math.ceil((data.Resources.Gold * 0.3)))
 
-                data.$inc('Resources.Marble', -(data.Resources.Marble * 0.3))
-                attackDet.$inc('Resources.Marble', (data.Resources.Marble * 0.3))
+                data.$inc('Resources.Marble', -Math.ceil((data.Resources.Marble * 0.3)))
+                attackDet.$inc('Resources.Marble', Math.ceil((data.Resources.Marble * 0.3)))
 
-                data.$inc('Resources.Solfour', -(data.Resources.Solfour * 0.3))
-                attackDet.$inc('Resources.Solfour', (data.Resources.Solfour * 0.3))
+                data.$inc('Resources.Solfour', -Math.ceil((data.Resources.Solfour * 0.3)))
+                attackDet.$inc('Resources.Solfour', Math.ceil((data.Resources.Solfour * 0.3)))
 
-                data.$inc('Resources.Food', -(data.Resources.Food * 0.3)).save();
-                attackDet.$inc('Resources.Food', (data.Resources.Food * 0.3)).save();
+                data.$inc('Resources.Food', -Math.ceil((data.Resources.Food * 0.3))).save();
+                attackDet.$inc('Resources.Food', Math.ceil((data.Resources.Food * 0.3))).save();
 
                 const newReport = new report({
                     Attacker: attackDet.NickName,
                     Defender: data.NickName,
                     Defender_Id: data._id,
                     HaveWon: true,
-                    Gold: data.Resources.Gold * 0.3,
-                    Marble: data.Resources.Marble * 0.3,
-                    Solfour: data.Resources.Solfour * 0.3,
-                    Food: data.Resources.Food * 0.3,
+                    Gold: Math.ceil(data.Resources.Gold * 0.3),
+                    Marble: Math.ceil(data.Resources.Marble * 0.3),
+                    Solfour: Math.ceil(data.Resources.Solfour * 0.3),
+                    Food: Math.ceil(data.Resources.Food * 0.3),
                     SoldiersDied: attackDet.Power.Soldiers.Ammount,
                     Alliance: attackDet.alliance
                 });
