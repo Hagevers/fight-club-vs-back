@@ -45,6 +45,21 @@ exports.attackMember = function(request, response){
                 });
                 newReport.save();
                 return response.status(200).send(newReport)
+            }else{
+                const newReport = new report({
+                    Attacker: attackDet.NickName,
+                    Defender: data.NickName,
+                    Defender_Id: data._id,
+                    HaveWon: false,
+                    Gold: 0,
+                    Marble: 0,
+                    Solfour: 0,
+                    Food: 0,
+                    SoldiersDied: 0,
+                    Alliance: attackDet.alliance
+                });
+                newReport.save();
+                return response.status(200).send(newReport)
             }
         });
     })
