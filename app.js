@@ -128,7 +128,7 @@ app.get('/confirm/:hash', async function (request, response) {
 
 app.get('/getMembers', auth, async function (request, response) {
     signUpTemplate.find({isVerified:true})
-        .select('NickName Power.Soldiers.Ammount alliance')
+        .select('NickName Resources.Gold Power.Soldiers.Ammount alliance')
         .then(data => response.status(200).send(data))
         .catch(error => console.log(error));
 });
