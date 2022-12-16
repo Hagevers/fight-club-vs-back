@@ -34,7 +34,7 @@ app.options('*', cors());
 app.get('/', function (request, response) {
 });
 app.get('/getCookie', auth, function (request, response) {
-    console.log('All good!');
+    response.status(200).send({valid: true});
 });
 app.post('/login', async function (request, response) {
     try{
