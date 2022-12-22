@@ -162,6 +162,24 @@ schedule.scheduleJob('*/15 * * * *', function(){
     .catch(error => console.log(error))
 });
 
+schedule.scheduleJob('30 20 * * *', function(){
+    signUpTemplate.find({isVerified: true})
+    .select('Workers')
+    .then(data => {
+        data.map(member => {
+            const {Workers} = member;
+            signUpTemplate.findOneAndUpdate({_id:member._id},
+                {$inc: {
+                    "Workers.Available" : 30
+                }},{new: true }, function (err, use){
+                    if (err) console.log(err);
+                    else console.log(use);
+                })
+        })
+    })
+    .catch(error => console.log(error))
+});
+
 
 app.listen(port, function () {
  console.log(`Example app listening on port !`);
