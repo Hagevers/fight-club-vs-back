@@ -137,7 +137,7 @@ app.post('/attack/:id', auth, attackMember);
 
 app.get('/report/:id', auth, getReports);
 
-const updateRes = schedule.scheduleJob('*/15 * * * *', function(){
+schedule.scheduleJob('*/15 * * * *', function(){
     signUpTemplate.find({isVerified: true})
     .select('Resources Workers')
     .then(data => {
@@ -159,14 +159,7 @@ const updateRes = schedule.scheduleJob('*/15 * * * *', function(){
                 })
         })
     })
-    .catch(error => console.log('Error before updating resources'))
-// //   signUpTemplate.updateMany({},
-// //     { $: 
-// //         {"Resources.Gold": "Workers.Efficiency.Mine"}
-// //     }, function(err, response){
-// //         if(err) console.log(err);
-// //         else console.log(response); 
-// //     });
+    .catch(error => console.log(error))
 });
 
 
