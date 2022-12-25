@@ -73,3 +73,8 @@ exports.getReports = function(request,response){
         return response.status(200).send(data);
     });
 }
+
+exports.buyItem = function(request, response){
+    const {id, Item} = request.params
+    response.status(200).send({msg:id,Item})
+}
