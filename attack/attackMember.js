@@ -79,7 +79,8 @@ exports.buyItem = function(request, response){
     schema.findOne({_id: id}).then(data => {
         console.log(data.Power.Items);
         console.log(item.item.name, item.item.power);
-        data.Power.Items.push({name: item.item.name, power: item.item.power}).save();
+        data.Power.Items.push({name: item.item.name, power: item.item.power});
+        data.save();
         return response.status(200)
     })
     
