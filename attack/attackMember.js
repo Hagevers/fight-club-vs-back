@@ -77,7 +77,7 @@ exports.getReports = function(request,response){
 exports.buyItem = function(request, response){
     const {id} = request.body;
     const {name,power} = request.body;
-    const item = {};
+    let item;
     item = {name, power};
     schema.findOneAndUpdate({_id: id}).then(data => {
         console.log(data.Power.Items);
