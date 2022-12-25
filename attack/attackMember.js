@@ -76,5 +76,5 @@ exports.getReports = function(request,response){
 
 exports.buyItem = function(request, response){
     const {id, Item} = request.params
-    response.status(200).send({msg:id,Item})
+    return response.status(200).send({msg:id,Item})
 }
