@@ -82,6 +82,7 @@ exports.buyItem = function(request, response){
     schema.findOneAndUpdate({_id: id}).then(data => {
         console.log(data.Power.Items);
         console.log(item);
+        return response.status(200)
         // data.Power.Items.push(item)
     })
     
