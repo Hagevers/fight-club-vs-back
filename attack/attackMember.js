@@ -76,12 +76,18 @@ exports.getReports = function(request,response){
 
 exports.buyItem = function(request, response){
     const {id, item} = request.body;
+    const cost = item.price;
     schema.findOne({_id: id}).then(data => {
-        console.log(data.Power.Items);
-        console.log(item.item.name, item.item.power);
+        if(data.Resources.Gold < cost || data.Resources.Food < cost || data.Resources.Marble < cost || data.Resources.Solfour < cost){
+            return response.status(200).send({msg: 'Not enough resources'})
+        }
         data.Power.Items.push({name: item.item.name, power: item.item.power});
+        data.$inc('Resources.Gold', -cost)
+        data.$inc('Resources.Marble', -cost)
+        data.$inc('Resources.Solfour', -cost)
+        data.$inc('Resources.Food', -cost)
         data.save();
-        return response.status(200)
+        return response.status(200).send({msg: 'Bought the item successfully!'})
     })
     
 }
