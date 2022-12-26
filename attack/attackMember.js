@@ -76,7 +76,7 @@ exports.getReports = function(request,response){
 
 exports.buyItem = function(request, response){
     const {id, item} = request.body;
-    const cost = item.price;
+    const cost = item.item.price;
     schema.findOne({_id: id}).then(data => {
         if(data.Resources.Gold < cost || data.Resources.Food < cost || data.Resources.Marble < cost || data.Resources.Solfour < cost){
             return response.status(200).send({msg: 'Not enough resources'})
